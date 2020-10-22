@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/root/Desktop/MathUtils/library.h
+iostream
+-
+functional
+-
+
+/root/Desktop/MathUtils/main.cpp
+iostream
+-
+library.h
+/root/Desktop/MathUtils/library.h
+cmath
+/root/Desktop/MathUtils/cmath
+iomanip
+/root/Desktop/MathUtils/iomanip
+
