@@ -6,6 +6,14 @@
 
 #IncludeRegexTransform: 
 
+/root/Desktop/MathUtils/library.cpp
+library.h
+/root/Desktop/MathUtils/library.h
+iostream
+-
+utility
+-
+
 /root/Desktop/MathUtils/library.h
 iostream
 -
