@@ -6,18 +6,12 @@
 
 #IncludeRegexTransform: 
 
-/root/Desktop/MathUtils/library.cpp
-library.h
-/root/Desktop/MathUtils/library.h
-iostream
--
-utility
--
-
 /root/Desktop/MathUtils/library.h
 iostream
 -
 functional
+-
+vector
 -
 
 /root/Desktop/MathUtils/main.cpp
@@ -27,6 +21,4 @@ library.h
 /root/Desktop/MathUtils/library.h
 cmath
 /root/Desktop/MathUtils/cmath
-iomanip
-/root/Desktop/MathUtils/iomanip
 
