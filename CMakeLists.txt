@@ -3,4 +3,4 @@ project(MathUtils)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(MathUtils main.cpp library.cpp library.h)
+add_executable(MathUtils main.cpp library.cpp library.h DataType.cpp DataType.h)

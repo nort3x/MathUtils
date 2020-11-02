@@ -82,6 +82,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/root/Desktop/MathUtils/DataType.cpp">
+			<Option target="MathUtils"/>
+		</Unit>
+		<Unit filename="/root/Desktop/MathUtils/DataType.h">
+			<Option target="MathUtils"/>
+		</Unit>
 		<Unit filename="/root/Desktop/MathUtils/library.cpp">
 			<Option target="MathUtils"/>
 		</Unit>

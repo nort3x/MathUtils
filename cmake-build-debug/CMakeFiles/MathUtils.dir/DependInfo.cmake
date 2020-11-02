@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/root/Desktop/MathUtils/DataType.cpp" "/root/Desktop/MathUtils/cmake-build-debug/CMakeFiles/MathUtils.dir/DataType.cpp.o"
   "/root/Desktop/MathUtils/library.cpp" "/root/Desktop/MathUtils/cmake-build-debug/CMakeFiles/MathUtils.dir/library.cpp.o"
   "/root/Desktop/MathUtils/main.cpp" "/root/Desktop/MathUtils/cmake-build-debug/CMakeFiles/MathUtils.dir/main.cpp.o"
   )

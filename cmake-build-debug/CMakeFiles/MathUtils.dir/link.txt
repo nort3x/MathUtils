@@ -1,1 +1,1 @@
-/usr/bin/c++  -g   CMakeFiles/MathUtils.dir/main.cpp.o CMakeFiles/MathUtils.dir/library.cpp.o  -o MathUtils 
+/usr/bin/c++  -g   CMakeFiles/MathUtils.dir/main.cpp.o CMakeFiles/MathUtils.dir/library.cpp.o CMakeFiles/MathUtils.dir/DataType.cpp.o  -o MathUtils 

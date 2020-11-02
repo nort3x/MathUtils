@@ -143,6 +143,33 @@ MathUtils/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MathUtils.dir/build.make CMakeFiles/MathUtils.dir/build
 .PHONY : MathUtils/fast
 
+DataType.o: DataType.cpp.o
+
+.PHONY : DataType.o
+
+# target to build an object file
+DataType.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MathUtils.dir/build.make CMakeFiles/MathUtils.dir/DataType.cpp.o
+.PHONY : DataType.cpp.o
+
+DataType.i: DataType.cpp.i
+
+.PHONY : DataType.i
+
+# target to preprocess a source file
+DataType.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MathUtils.dir/build.make CMakeFiles/MathUtils.dir/DataType.cpp.i
+.PHONY : DataType.cpp.i
+
+DataType.s: DataType.cpp.s
+
+.PHONY : DataType.s
+
+# target to generate assembly for a file
+DataType.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MathUtils.dir/build.make CMakeFiles/MathUtils.dir/DataType.cpp.s
+.PHONY : DataType.cpp.s
+
 library.o: library.cpp.o
 
 .PHONY : library.o
@@ -206,6 +233,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... MathUtils"
+	@echo "... DataType.o"
+	@echo "... DataType.i"
+	@echo "... DataType.s"
 	@echo "... library.o"
 	@echo "... library.i"
 	@echo "... library.s"

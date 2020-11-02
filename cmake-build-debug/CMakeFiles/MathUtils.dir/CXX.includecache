@@ -6,19 +6,41 @@
 
 #IncludeRegexTransform: 
 
-/root/Desktop/MathUtils/library.h
-iostream
+/root/Desktop/MathUtils/DataType.cpp
+DataType.h
+/root/Desktop/MathUtils/DataType.h
+
+/root/Desktop/MathUtils/DataType.h
+ostream
 -
 functional
 -
 vector
 -
+DataType.cpp
+/root/Desktop/MathUtils/DataType.cpp
+
+/root/Desktop/MathUtils/library.cpp
+DataType.h
+/root/Desktop/MathUtils/DataType.h
+cmath
+/root/Desktop/MathUtils/cmath
+library.h
+/root/Desktop/MathUtils/library.h
+
+/root/Desktop/MathUtils/library.h
+DataType.h
+/root/Desktop/MathUtils/DataType.h
+library.cpp
+/root/Desktop/MathUtils/library.cpp
 
 /root/Desktop/MathUtils/main.cpp
 iostream
 -
 library.h
 /root/Desktop/MathUtils/library.h
+DataType.h
+/root/Desktop/MathUtils/DataType.h
 cmath
 /root/Desktop/MathUtils/cmath
 

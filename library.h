@@ -1,92 +1,62 @@
 #ifndef MATHUTILS_LIBRARY_H
 #define MATHUTILS_LIBRARY_H
-#include <iostream>
-#include <functional>
-#include <vector>
+#include "DataType.h"
+#define tempT template<typename T>
+#define tempTK template<typename T,typename K>
 
-typedef double  StepSize;
-typedef StepSize Point;
-typedef std::function<double(double)> RealFunction1D;
+tempTK class Differentiation{
 
-
-class MDPoint{
-    std::vector<Point> mdp;
+    typedef std::function<T(K)> RealFunction1D;
 public:
+    static RealFunction1D Forward1D(const RealFunction1D& rf,K StepSize);
+    static T Forward1D(const RealFunction1D& rf,K StepSize,K atPoint);
 
-    MDPoint(const Point p[],int dim){
-        mdp.reserve(dim);
-        for(int i =0 ;i<dim;i++){
-            setValue(p[i],i);
-        }
-    }
-    MDPoint(int dim){
-        mdp.reserve(dim);
-    }
-    MDPoint(){}
+    static T Backward1D(const RealFunction1D& rf,K StepSize,K atPoint);
+    static RealFunction1D Backward1D(const RealFunction1D& rf,K StepSize);
 
-    MDPoint& setValue(Point p,int index){
-        mdp.insert(mdp.begin()+index,p);
-        return *this;
-    }
-    Point getValue(int index){
-        return mdp.at(index);
-    }
-    int getDim(){
-        return mdp.capacity();
-    }
+    static T ThreePointMidPoint1D(const RealFunction1D& rf,K StepSize,K atPoint);
+    static RealFunction1D ThreePointMidPoint1D(const RealFunction1D& rf,K StepSize);
 
-    friend std::ostream& operator<<(std::ostream& o ,MDPoint& mdPoint){
-        o<<"(";
-        for(int i=0 ; i<mdPoint.getDim();i++){
-            if(i!=mdPoint.getDim()-1){
-                o<<mdPoint.getValue(i) <<" ,";
-            } else{
-                o<<mdPoint.getValue(i)<<")";
-            }
-        }
-        return o;
-    }
+    static T FivePointMidPoint1D(const RealFunction1D& rf,K StepSize,K atPoint);
+    static RealFunction1D FivePointMidPoint1D(const RealFunction1D& rf,K StepSize);
+
+    static T NthDiff(T (*differentiator)(const RealFunction1D& rf,K StepSize,K atPoint),const RealFunction1D& rf,K StepSize,K atPoint,int n);
+    static RealFunction1D NthDiff(double (*differentiator)(const RealFunction1D& rf,K StepSize,K atPoint),const RealFunction1D& rf,K StepSize,int n);
 };
 
-class Differentiation{
-public:
-    static double Forward1D(const RealFunction1D& rf,StepSize s,Point p);
-    static double Backward1D(const RealFunction1D& rf,StepSize s,Point p);
-    static double ThreePointMidPoint1D(const RealFunction1D& rf,StepSize s,Point p);
-    static double FivePointMidPoint1D(const RealFunction1D& rf,StepSize s,Point p);
-    static double NthDiff(double (*differentiator)(RealFunction1D ,StepSize s,Point p),const RealFunction1D& rf,StepSize s,Point p,int n);
-};
-
-class Interpolation{
+tempTK class Interpolation{
+    typedef std::function<T(K)> RealFunction1D;
 private:
-    static RealFunction1D LagrangeCoefficient(int n, const Point x[], int K_point);
+    static RealFunction1D LagrangeCoefficient(int n, const K x[], int K_point);
 public:
-    static Point ChebyshevNode(int n,Point a ,Point b,int samples);
-    static RealFunction1D LagrangePolynomialFromDataSetWithNPoint(int n,const Point x[] ,const Point y[]);
-    static RealFunction1D LagrangePolynomialFromFunctionSimpleStep(const RealFunction1D& function1D,int samples,Point start,Point end,Point x[],Point y[]);
-    static RealFunction1D LagrangePolynomialFromFunctionChebyshevNodes(RealFunction1D& realFunction1D,int samples,Point start,Point end,Point x[],Point y[]);
-    static MDPoint  LinearRegression2D_parameters(std::vector<MDPoint> arr,Point accuracy,double(*diifer)(const RealFunction1D& function, StepSize s, Point p),int MaxTry);
+    static K ChebyshevNode(int n,K a ,K b,int samples);
+    static RealFunction1D LagrangePolynomialFromDataSetWithNPoint(int n,const K x[] ,const T y[]);
+    static RealFunction1D LagrangePolynomialFromFunctionSimpleStep(const RealFunction1D& function1D,int samples,K start,K end,K x[],T y[]);
+    static RealFunction1D LagrangePolynomialFromFunctionChebyshevNodes(RealFunction1D& realFunction1D,int samples,T start,T end,T x[],T y[]);
+    static Algebric::MultiDimPoint<T>  LinearRegression2D_parameters(std::vector<Algebric::MultiDimPoint<T>> arr,T accuracy,T(*diifer)(const RealFunction1D& function, K s, K p),int MaxTry);
 };
 
-class Integration{
+tempTK class Integration{
+    typedef std::function<T(K)> RealFunction1D;
 public:
-    static RealFunction1D SimpleIndefinite(const RealFunction1D& function1D,Point LowerBound,double stepSize);
-    static double SimpleDefinite(const RealFunction1D& function1D,Point LowerBound,Point UpperBound,double stepsize);
+    static RealFunction1D SimpleIndefinite(const RealFunction1D& function1D,K LowerBound,K stepSize);
+    static T SimpleDefinite(const RealFunction1D& function1D,K LowerBound,K UpperBound,K stepsize);
 
-    static RealFunction1D SimpsonIndefiniteClosed(const RealFunction1D& function1D,Point LowerBound,double stepSize);
-    static double SimpsonDefiniteClosed(const RealFunction1D& function1D,Point LowerBound,Point UpperBound,double stepSize);
+    static RealFunction1D SimpsonIndefiniteClosed(const RealFunction1D& function1D,K LowerBound,K stepSize);
+    static T SimpsonDefiniteClosed(const RealFunction1D& function1D,K LowerBound,K UpperBound,K stepSize);
 };
 
-class EquationSolver{
+tempTK class EquationSolver{
+    typedef std::function<T(K)> RealFunction1D;
 public:
-    static Point BisectionZeroFinder(RealFunction1D& function1D, Point a, Point b, StepSize accuracy);
-    static Point Newton_Raphson(RealFunction1D &function1D, Point init_p, StepSize accuracy,int maxtry,double(*diifer)(const RealFunction1D& function, StepSize s, Point p));
+    static K BisectionZeroFinder(RealFunction1D& function1D, K a, K b, T accuracy);
+    static K Newton_Raphson(RealFunction1D &function1D, K init_p, T accuracy,int maxtry,T(*diifer)(const RealFunction1D& function, K stepsize, K point));
 
 };
 
-class Misc{
+tempT class Misc{
 public:
-    static void StartBeforeEnd(Point &start,Point &end);
+    static void StartBeforeEnd(T &start,T &end);
 };
-
+#include "library.cpp"
 #endif //MATHUTILS_LIBRARY_H
