@@ -2,17 +2,18 @@
 #include "library.h"  // for Calculations
 #include "DataType.h" // for Types
 #include "cmath"
-
+#include "gnuplot.h"
+#include "Utils.h"
 
 int main() {
+    using namespace Calculus::SingleVar;
+    auto l2 = [](int x)->void{
+        Interpolation<double,double>::LagrangePolynomialFromFunctionSimpleStep(sin,x,-4,4)(1);
+    };
+    auto l3 = Utils::BenchMark<int>::methodDurationFunction(l2);
+    plt::TwoDim<double,int>::FunctionPlot("",l3,0,100,100,"with l");
 
-    /*
-     * my library is templated it means you can use (any) data type with defined operations!
-     */
 
-    //std::cout<<Differentiation<double,double>::Forward1D([](double x){return x;},0.0001,2);
-    std::cout<<Algebric::Matrix<int>(3,3,0);
-    std::cout<<Algebric::MultiDimPoint<int>((const int[]){1,2,3},3);
-return 0;
+
+    return 0;
 }
-

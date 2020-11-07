@@ -20,6 +20,22 @@ vector
 DataType.cpp
 /root/Desktop/MathUtils/DataType.cpp
 
+/root/Desktop/MathUtils/Utils.h
+ostream
+-
+chrono
+/root/Desktop/MathUtils/chrono
+iomanip
+/root/Desktop/MathUtils/iomanip
+
+/root/Desktop/MathUtils/gnuplot.h
+string
+-
+vector
+-
+fstream
+-
+
 /root/Desktop/MathUtils/library.cpp
 DataType.h
 /root/Desktop/MathUtils/DataType.h
@@ -27,6 +43,8 @@ cmath
 /root/Desktop/MathUtils/cmath
 library.h
 /root/Desktop/MathUtils/library.h
+limits.h
+/root/Desktop/MathUtils/limits.h
 
 /root/Desktop/MathUtils/library.h
 DataType.h
@@ -43,4 +61,8 @@ DataType.h
 /root/Desktop/MathUtils/DataType.h
 cmath
 /root/Desktop/MathUtils/cmath
+gnuplot.h
+/root/Desktop/MathUtils/gnuplot.h
+Utils.h
+/root/Desktop/MathUtils/Utils.h
 

@@ -88,6 +88,12 @@
 		<Unit filename="/root/Desktop/MathUtils/DataType.h">
 			<Option target="MathUtils"/>
 		</Unit>
+		<Unit filename="/root/Desktop/MathUtils/Utils.h">
+			<Option target="MathUtils"/>
+		</Unit>
+		<Unit filename="/root/Desktop/MathUtils/gnuplot.h">
+			<Option target="MathUtils"/>
+		</Unit>
 		<Unit filename="/root/Desktop/MathUtils/library.cpp">
 			<Option target="MathUtils"/>
 		</Unit>

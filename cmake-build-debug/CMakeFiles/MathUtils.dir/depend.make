@@ -11,6 +11,8 @@ CMakeFiles/MathUtils.dir/library.cpp.o: ../library.h
 
 CMakeFiles/MathUtils.dir/main.cpp.o: ../DataType.cpp
 CMakeFiles/MathUtils.dir/main.cpp.o: ../DataType.h
+CMakeFiles/MathUtils.dir/main.cpp.o: ../Utils.h
+CMakeFiles/MathUtils.dir/main.cpp.o: ../gnuplot.h
 CMakeFiles/MathUtils.dir/main.cpp.o: ../library.cpp
 CMakeFiles/MathUtils.dir/main.cpp.o: ../library.h
 CMakeFiles/MathUtils.dir/main.cpp.o: ../main.cpp
