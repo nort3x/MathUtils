@@ -1,31 +1,31 @@
-#include <iostream>
 #include "library.h"  // for Calculations
 #include "DataType.h" // for Types
 #include "cmath"
 #include "gnuplot.h"
-#include "Utils.h"
-
-namespace sig = Calculus::SingleVar;
-using namespace Algebric;
-namespace sca = Calculus::MultiVar;
 
 
 int main() {
-    typedef MultiDimPoint<double> Vec2;
-    const int MolsOfGas = 10;
-    const int idealGasR = 8;
 
-    // P = P(T,V)
-    auto Pressure = [&MolsOfGas, &idealGasR](const Vec2 &vec) -> double {
-        // PV = nRT
-        // P = nRT/V
-        return MolsOfGas * idealGasR * vec.getValue(0) / vec.getValue(1);
+    using namespace Calculus::SingleVar;
+
+    auto function = [](double x){
+        if((int)x%2 == 0 ){
+            return 1;
+        } else{
+            return -1;
+        }
     };
 
+    auto function_diff = Differentiation<double,double>::FivePointMidPoint1D(function,0.001);
 
-    auto samples = sca::Scalar::Sampler<double, double>::FunctionSampler(Pressure, {{100, +101, 100},
-                                                                                    {1,   +2,   100}});
-    plt::DataPlot<double, double>(samples, "with l", "set pm3d ; splot", "/root/Desktop/d.dat");
+    plt::TwoDim<double,double>::FunctionPlot(function,-10,10,1000,"with l");
+    plt::TwoDim<double,double>::FunctionPlot(function_diff,-10,10,1000,"with l");
 
+    auto composit_function = [&function](Algebric::MultiDimPoint<double> vec){
+        return function(vec[0])*sin(vec[1])*vec[0];
+    };
+    auto samples = Calculus::MultiVar::Scalar::Sampler<double,double>::FunctionSampler
+    (composit_function,{{-5,5,100},{-5,5,100}});
+    plt::DataPlot<double,double>(samples,"with l","set hidden; splot ");
     return 0;
 }

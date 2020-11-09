@@ -1,23 +1,16 @@
-#ifndef
-MATHUTILS_LIBRARY_CPP
-#define
-MATHUTILS_LIBRARY_CPP
+#ifndef MATHUTILS_LIBRARY_CPP
+#define MATHUTILS_LIBRARY_CPP
 
-#include
-"DataType.h"
-#include
-"cmath"
-#include
-"library.h"
-#include
-"cstdarg"
-#include
-"Utils.h"
+#include "DataType.h"
+#include "cmath"
+#include "library.h"
+#include "cstdarg"
+#include "Utils.h"
 
 tempT void Calculus::Misc<T>::StartBeforeEnd(T &start, T &end) {
-if (start > end) {  // just to make sure a is after b :)
-T temp = start;
-start = end;
+    if (start > end) {  // just to make sure a is after b :)
+        T temp = start;
+        start = end;
         end = temp;
     }
 }
@@ -280,113 +273,113 @@ tempTK typename Calculus::SingleVar::Sampler<T,K>::SampledFunction Calculus::Sin
         s.y.push_back(rf(p));
     }
     return s;
-        }
+}
 
-        tempTK void Calculus::SingleVar::Sampler<T, K>::SampledFunction::avoidinf() const {
-        for (int i = 0; i < std::min(y.size(), x.size()); ++i) {
-        if (std::isinf(x.at(i)) || std::isinf(y.at(i))){
-        x.erase(x.begin()+ i);
-        y.erase(y.begin()+i);
+tempTK void Calculus::SingleVar::Sampler<T,K>::SampledFunction::avoidinf() const {
+    for (int i = 0; i < std::min(y.size(),x.size()); ++i) {
+        if(std::isinf(x.at(i)) || std::isinf(y.at(i))){
+            x.erase(x.begin()+ i);
+            y.erase(y.begin()+i);
         }
-        }
-        }
+    }
+}
 
 
 ////// multi var/////
 
-        tempTK void Calculus::MultiVar::Scalar::Sampler<T, K>::SampledScalarFunction::avoidinf() const {
+tempTK void Calculus::MultiVar::Scalar::Sampler<T,K>::SampledScalarFunction::avoidinf() const {
 
-        for (int i=0;i<variables.size();i++) {
-        for (auto cor: variables.at(i)){
-        if (isinff(cor)) {
-        variables.erase(variables.begin() + i);
-        function.erase(i);
+    for (int i=0;i<variables.size();i++) {
+        for(auto cor: variables.at(i)){
+            if(isinff(cor)) {
+                variables.erase(variables.begin() + i);
+                function.erase(i);
+            }
         }
-        }
-        }
+    }
 
-        for (int i = 0; i < function.size(); ++i) {
-        if (isinff(function.at(i))){
-        function.erase(i);
-        variables.erase(i);
+    for (int i = 0; i < function.size(); ++i) {
+        if(isinff(function.at(i))){
+            function.erase(i);
+            variables.erase(i);
         }
-        }
-        }
+    }
+}
 
-        tempTK void Calculus::MultiVar::Scalar::Sampler<T, K>::SampledScalarFunction::fitSize() const {
+tempTK void Calculus::MultiVar::Scalar::Sampler<T,K>::SampledScalarFunction::fitSize() const {
 
-        int i = std::min((int) function.size(), (int) variables.at(0).size());
-        function.resize(i);
-        for (auto col: variables)
+    int i = std::min((int) function.size(),(int) variables.at(0).size());
+    function.resize(i);
+    for(auto col: variables)
         col.resize(i);
 
-        }
-        tempTK  std::vector<std::vector<K>> Calculus::MultiVar::Scalar::Sampler<T, K>::MlineSpace(const std::initializer_list<const linspace>& args){
-        std::vector<std::vector<K>> ans;
+}
+tempTK  std::vector<std::vector<K>> Calculus::MultiVar::Scalar::Sampler<T,K>::MlineSpace(const std::initializer_list<const linspace>& args){
+    std::vector<std::vector<K>> ans;
 
-        for (auto l: args){
+    for(auto l: args){
         ans.push_back(std::vector<K>());
         for (int i = 0; i <= l.n; ++i) {
-        ans.at(ans.size()-1).push_back(l.a + i*((l.b-l.a)/(K)l.n));
+            ans.at(ans.size()-1).push_back(l.a + i*((l.b-l.a)/(K)l.n));
         }
-        }
-        Utils::CartiProduct(ans);
-        return ans;
-        }
+    }
+    Utils::CartiProduct(ans);
+    return ans;
+}
 
-        tempTK typename Calculus::MultiVar::Scalar::Sampler<T, K>::SampledScalarFunction Calculus::MultiVar::Scalar::Sampler<T, K>::FunctionSampler(
+tempTK typename Calculus::MultiVar::Scalar::Sampler<T,K>::SampledScalarFunction Calculus::MultiVar::Scalar::Sampler<T,K>::FunctionSampler(
         const std::function<T(Algebric::MultiDimPoint<K>)> &rf, const std::initializer_list<const linspace> &args) {
-        Calculus::MultiVar::Scalar::Sampler<T, K>::SampledScalarFunction s;
-        for (auto l:args)
+    Calculus::MultiVar::Scalar::Sampler<T,K>::SampledScalarFunction s;
+    for(auto l:args)
         s.numberOfsamples.push_back(l.n);
-        s.variables = MlineSpace(args);
-        if (s.variables.size()>0){
+    s.variables = MlineSpace(args);
+    if(s.variables.size()>0){
         for (int j = 0; j < s.variables.at(0).size(); ++j) {
 
-        Algebric::MultiDimPoint<K> temp(s.variables.size());
-        for (int i = 0; i < s.variables.size(); ++i) {
-        temp.setValue(s.variables.at(i).at(j), i);
-        }
-        s.function.push_back(rf(temp));
-        }
-
-        }
-        return s;
+            Algebric::MultiDimPoint<K> temp(s.variables.size());
+            for (int i = 0; i < s.variables.size(); ++i) {
+                temp.setValue(s.variables.at(i).at(j),i);
+            }
+            s.function.push_back(rf(temp));
         }
 
-        template<typename T, typename K>  typename Calculus::MultiVar::Scalar::Sampler<T, K>::SampledScalarFunction Calculus::MultiVar::Scalar::Sampler<T, K>::FunctionSamplerChebyshevNodes(
+    }
+    return s;
+}
+
+template<typename T,typename K>  typename Calculus::MultiVar::Scalar::Sampler<T,K>::SampledScalarFunction Calculus::MultiVar::Scalar::Sampler<T,K>::FunctionSamplerChebyshevNodes(
         const std::function<T(Algebric::MultiDimPoint<K>)> &rf, std::initializer_list<const linspace> &args) {
-        Calculus::MultiVar::Scalar::Sampler<T, K>::SampledScalarFunction s;
-        for (auto l:args){
+    Calculus::MultiVar::Scalar::Sampler<T,K>::SampledScalarFunction s;
+    for(auto l:args){
         s.variables.push_back(std::vector<K>());
         for (int i = 0; i <= l.n; ++i) {
-        s.variables.at(s.variables.size()-1).push_back(Calculus::SingleVar::Interpolation<T, K>::ChebyshevNode(i, l.a, l.b, l.n));
+            s.variables.at(s.variables.size()-1).push_back(Calculus::SingleVar::Interpolation<T,K>::ChebyshevNode(i,l.a,l.b,l.n));
         }
-        }
-        Utils::CartiProduct(s.variables);
-        if (s.variables.size()>0){
+    }
+    Utils::CartiProduct(s.variables);
+    if(s.variables.size()>0){
         for (int j = 0; j < s.variables.at(0).size(); ++j) {
 
-        Algebric::MultiDimPoint<K> temp;
-        for (int i = 0; i < s.variables.size(); ++i) {
-        temp[i] = s.variables.at(i).at(j);
+            Algebric::MultiDimPoint<K> temp;
+            for (int i = 0; i < s.variables.size(); ++i) {
+                temp[i] = s.variables.at(i).at(j);
+            }
+            s.function.push_back(rf(temp));
         }
-        s.function.push_back(rf(temp));
-        }
-        }
-        return s;
-        }
+    }
+    return s;
+}
 
-        tempTK std::function<T(Algebric::MultiDimPoint<K>)> Calculus::MultiVar::Scalar::Differentiation::Partial(
+tempTK std::function<T(Algebric::MultiDimPoint<K>)> Calculus::MultiVar::Scalar::Differentiation::Partial(
         const std::function<T(Algebric::MultiDimPoint<K>)> &rf, T (*Differ)(const std::function<T(K)> &, K, K),
         int Index, K accuracy) {
-        return[rf, Differ, Index, accuracy](Algebric::MultiDimPoint<K> vec)->T{
-        return Differ([rf, Index, vec](K x)->T{
-        Algebric::MultiDimPoint<K> a = vec;
-        a[Index] = x;
-        return rf(a);
-}, accuracy, vec.getValue(Index));
-};
+    return [rf,Differ,Index,accuracy](Algebric::MultiDimPoint<K> vec)->T{
+        return Differ([rf,Index,vec](K x)->T{
+            Algebric::MultiDimPoint<K> a = vec;
+            a[Index] = x;
+            return rf(a);
+            },accuracy,vec.getValue(Index));
+    };
 }
 
 #endif

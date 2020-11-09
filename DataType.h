@@ -8,42 +8,34 @@
 #include <functional>
 #include <vector>
 
-namespace Algebric {
+namespace Algebric{
 
-    template<typename T>
-    class MultiDimPoint {
+    template <typename T> class MultiDimPoint {
         std::vector<T> mdp;
         int dim;
     public:
         MultiDimPoint(const std::initializer_list<T> &arg);
-
         MultiDimPoint(const int &dim);
-
         MultiDimPoint();
+        MultiDimPoint(const std::vector<T>&);
 
-        MultiDimPoint(const std::vector<T> &);
-
-        MultiDimPoint &setValue(T p, const int &index);
-
+        MultiDimPoint& setValue(T p,const int& index);
         T getValue(int index) const;
-
         int getDim() const;
 
-        const T &operator[](const int &index) const {
+        const T& operator[](const int &index)const{
             return getValue(index);
         };
-
-        T &operator[](const int &index) {
+        T& operator[](const int &index){
             return (mdp.at(index));
         };
-
-        friend std::ostream &operator<<(std::ostream &o, const MultiDimPoint &mdPoint) {
-            o << "(";
-            for (int i = 0; i < mdPoint.getDim(); i++) {
-                if (i != mdPoint.getDim() - 1) {
-                    o << mdPoint.getValue(i) << " ,";
-                } else {
-                    o << mdPoint.getValue(i) << ")";
+        friend std::ostream& operator<<(std::ostream& o ,const MultiDimPoint& mdPoint){
+            o<<"(";
+            for(int i=0 ; i<mdPoint.getDim();i++){
+                if(i!=mdPoint.getDim()-1){
+                    o<<mdPoint.getValue(i) <<" ,";
+                } else{
+                    o<<mdPoint.getValue(i)<<")";
                 }
             }
             return o;

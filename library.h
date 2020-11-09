@@ -67,53 +67,35 @@ namespace Calculus{
             static T SimpsonDefiniteClosed(const RealFunction1D& function1D,K LowerBound,K UpperBound,K stepSize);
         };
 
-        tempTK
-        class EquationSolver {
+        tempTK class EquationSolver{
             typedef std::function<T(K)> RealFunction1D;
         public:
-            static K BisectionZeroFinder(RealFunction1D &function1D, K a, K b, T accuracy);
-
-            static K Newton_Raphson(RealFunction1D &function1D, K init_p, T accuracy, int maxtry,
-                                    T(*diifer)(const RealFunction1D &function, K stepsize, K point));
+            static K BisectionZeroFinder(RealFunction1D& function1D, K a, K b, T accuracy);
+            static K Newton_Raphson(RealFunction1D &function1D, K init_p, T accuracy,int maxtry,T(*diifer)(const RealFunction1D& function, K stepsize, K point));
 
         };
 
 
     }
-    namespace MultiVar {
-        namespace Scalar {
-            tempTK
-            class Sampler {
+    namespace MultiVar{
+        namespace Scalar{
+            tempTK class Sampler{
             public:
-                struct SampledScalarFunction {
+                struct SampledScalarFunction{
                     mutable std::vector<std::vector<K>> variables;
                     mutable std::vector<T> function;
                     mutable std::vector<int> numberOfsamples;
-
                     void fitSize() const;
-
                     void avoidinf() const;
                 };
-
-                struct linspace {
-                    K a;
-                    K b;
-                    int n;
-                };
-
-                static std::vector<std::vector<K>> MlineSpace(const std::initializer_list<const linspace> &);
-
-                static SampledScalarFunction FunctionSampler(const std::function<T(Algebric::MultiDimPoint<K>)> &rf,
-                                                             const std::initializer_list<const linspace> &);
-
-                static SampledScalarFunction
-                FunctionSamplerChebyshevNodes(const std::function<T(Algebric::MultiDimPoint<K>)> &rf,
-                                              std::initializer_list<const linspace> &);
+                struct linspace { K a;K b ; int n;};
+                static std::vector<std::vector<K>> MlineSpace(const std::initializer_list<const linspace>&);
+                static SampledScalarFunction FunctionSampler(const std::function<T(Algebric::MultiDimPoint<K>)> &rf,const std::initializer_list<const linspace>&);
+                static SampledScalarFunction FunctionSamplerChebyshevNodes(const std::function<T(Algebric::MultiDimPoint<K>)> &rf,std::initializer_list<const linspace>&);
             };
-            namespace Differentiation {
-                tempTK std::function<T(Algebric::MultiDimPoint<K>)>
-                Partial(const std::function<T(Algebric::MultiDimPoint<K>)> &,
-                        T(*Differ)(const std::function<T(K)> &rf, K StepSize, K atPoint), int Index, K accuracy);
+            namespace Differentiation{
+                tempTK std::function<T(Algebric::MultiDimPoint<K>)> Partial(const std::function<T(Algebric::MultiDimPoint<K>)>&,
+                        T(*Differ)(const std::function<T(K)>& rf,K StepSize,K atPoint),int Index,K accuracy);
             }
 
         }

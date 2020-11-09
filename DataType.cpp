@@ -1,42 +1,36 @@
 #ifndef MATHUTILS_DATATYPE_CPP
 #define MATHUTILS_DATATYPE_CPP
-
 #include "DataType.h"
-
 #define tempT template<typename T>
 
-tempT Algebric::MultiDimPoint<T>::MultiDimPoint(const int &d) {
+tempT Algebric::MultiDimPoint<T>::MultiDimPoint(const int& d) {
     mdp.reserve(d);
-    dim = d;
+     dim = d;
 }
 
 tempT Algebric::MultiDimPoint<T>::MultiDimPoint() {
     dim = 0;
 }
-
-tempT Algebric::MultiDimPoint<T>::MultiDimPoint(const std::initializer_list<T> &arg) {
+tempT Algebric::MultiDimPoint<T>::MultiDimPoint(const std::initializer_list<T>& arg) {
     mdp.reserve(arg.size());
     this->dim = arg.size();
-    for (auto p: arg) {
+    for(auto p: arg){
         mdp.push_back(p);
     }
 }
-
-tempT Algebric::MultiDimPoint<T> &Algebric::MultiDimPoint<T>::setValue(T p, const int &index) {
-    mdp.insert(mdp.begin() + index, p);
+tempT Algebric::MultiDimPoint<T>& Algebric::MultiDimPoint<T>::setValue(T p, const int& index) {
+    mdp.insert(mdp.begin()+index,p);
     return *this;
 }
-
 tempT T Algebric::MultiDimPoint<T>::getValue(int index) const {
     return mdp.at(index);
 }
-
 tempT int Algebric::MultiDimPoint<T>::getDim() const {
     return dim;
 }
 
 template<typename T>
-Algebric::MultiDimPoint<T>::MultiDimPoint(const std::vector<T> &vec) {
+Algebric::MultiDimPoint<T>::MultiDimPoint(const std::vector<T>& vec ) {
     mdp = vec;
     dim = vec.size();
 }
@@ -48,7 +42,7 @@ Algebric::MultiDimPoint<T>::MultiDimPoint(const std::vector<T> &vec) {
 
 // Parameter Constructor
 template<typename T>
-Algebric::Matrix<T>::Matrix(unsigned _rows, unsigned _cols, const T &_initial) {
+Algebric::Matrix<T>::Matrix(unsigned _rows, unsigned _cols, const T& _initial) {
     mat.resize(_rows);
     for (unsigned i=0; i<mat.size(); i++) {
         mat[i].resize(_cols, _initial);
