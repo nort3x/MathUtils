@@ -21,6 +21,34 @@
 
 
 
+#How To Use?
+
+* on Linux:
+
+1 - install gnuplot 
+
+2 - copy headerfiles and cpp files of project to dir of your project
+
+3 Done!
+
+
+
+
+
+--------
+* on Windows:
+
+  1- go to http://www.gnuplot.info/download.html and install gnuplot (i prefer MinGW)
+  
+  
+  2- [add GnuPlot to cmd](https://superuser.com/questions/689333/how-to-add-installed-program-to-command-prompt-in-windows)
+  
+  
+  3- copy headerfiles and cpp files of project to dir of your project
+  
+  
+  4- Done!
+
 
 ```cpp
 /*
