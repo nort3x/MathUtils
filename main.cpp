@@ -5,15 +5,27 @@
 #include "gnuplot.h"
 #include "Utils.h"
 
+namespace sig = Calculus::SingleVar;
+using namespace Algebric;
+namespace sca = Calculus::MultiVar;
+
+
 int main() {
-    using namespace Calculus::SingleVar;
-    auto l2 = [](int x)->void{
-        Interpolation<double,double>::LagrangePolynomialFromFunctionSimpleStep(sin,x,-4,4)(1);
+    typedef MultiDimPoint<double> Vec2;
+    const int MolsOfGas = 10;
+    const int idealGasR = 8;
+
+    // P = P(T,V)
+    auto Pressure = [&MolsOfGas, &idealGasR](const Vec2 &vec) -> double {
+        // PV = nRT
+        // P = nRT/V
+        return MolsOfGas * idealGasR * vec.getValue(0) / vec.getValue(1);
     };
-    auto l3 = Utils::BenchMark<int>::methodDurationFunction(l2);
-    plt::TwoDim<double,int>::FunctionPlot("",l3,0,100,100,"with l");
 
 
+    auto samples = sca::Scalar::Sampler<double, double>::FunctionSampler(Pressure, {{100, +101, 100},
+                                                                                    {1,   +2,   100}});
+    plt::DataPlot<double, double>(samples, "with l", "set pm3d ; splot", "/root/Desktop/d.dat");
 
     return 0;
 }

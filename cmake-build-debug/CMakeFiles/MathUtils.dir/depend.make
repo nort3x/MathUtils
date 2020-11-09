@@ -6,6 +6,7 @@ CMakeFiles/MathUtils.dir/DataType.cpp.o: ../DataType.h
 
 CMakeFiles/MathUtils.dir/library.cpp.o: ../DataType.cpp
 CMakeFiles/MathUtils.dir/library.cpp.o: ../DataType.h
+CMakeFiles/MathUtils.dir/library.cpp.o: ../Utils.h
 CMakeFiles/MathUtils.dir/library.cpp.o: ../library.cpp
 CMakeFiles/MathUtils.dir/library.cpp.o: ../library.h
 

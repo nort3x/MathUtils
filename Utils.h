@@ -6,6 +6,7 @@
 #define MATHUTILS_UTILS_H
 
 #include <ostream>
+#include <fstream>
 #include "chrono"
 #include "iomanip"
 
@@ -41,14 +42,125 @@ namespace Utils{
             return t.readNow().count();
         }
 
-        static std::function<double(T)> methodDurationFunction(std::function<void(T)> func){
-            return [func](T data)->double{
-                return methodDuration(func,data);
+        static std::function<double(T)> methodDurationFunction(std::function<void(T)> func) {
+            return [func](T data) -> double {
+                return methodDuration(func, data);
             };
         }
 
     };
 
+    template<typename T, size_t N>
+    std::string
+    WriteDataToFile(const std::vector<T> (&data)[N], const std::string &path = "", const int &precision = 10) {
+        std::fstream file;
+        std::string rpath;
 
+        file << std::setprecision(precision)
+        if (path.empty()) {
+            rpath = tempnam("1", "1234567890");
+            file.open(rpath, std::ios::out);
+        } else {
+            rpath = path;
+            file.open(rpath, std::ios::out);
+        }
+        if (file.is_open()) {
+            file << "#DATA BEGINS\n";
+            int min_n_data = data[0].size();
+            for (int i = 0; i < N; ++i) {
+                min_n_data = std::min(min_n_data, (int) data[i].size());
+            }
+
+            for (int i = 0; i < min_n_data; i++) {
+                for (int j = 0; j < N; ++j) {
+                    file << data[j].at(i) << "\t";
+                }
+                file << "\n";
+            }
+            file << "#DATA ENDS\n\n";
+        }
+        file.close();
+        return rpath;
+    }
+
+    tempTK std::string
+    WriteDataToFile(const typename Calculus::MultiVar::Scalar::Sampler<T, K>::SampledScalarFunction s,
+                    const std::string &path = "", const int &precision = 10) {
+
+        std::fstream file;
+        std::string rpath;
+        file << std::setprecision(10);
+
+        if (path.empty()) {
+            rpath = tempnam("1", "1234567890");
+            file.open(rpath, std::ios::out);
+        } else {
+            rpath = path;
+            file.open(rpath, std::ios::out);
+        }
+        if (file.is_open()) {
+            file << "#DATA BEGINS\n";
+            s.fitSize();
+
+            for (int i = 0; i < s.function.size(); ++i) {
+                if (i % (s.numberOfsamples.at(0) + 1) == 0)
+                    file << "\n";
+                for (auto cor:s.variables)
+                    file << cor.at(i) << "\t";
+                file << s.function.at(i) << "\n";
+
+
+            }
+            file << "#DATA ENDS\n\n";
+        }
+        file.close();
+        return rpath;
+    }
+
+    tempT void CopyVectorToItSelf(std::vector<T> &v, int n) {
+        v.reserve(v.size() * n);
+        std::vector<T> a = v;
+        for (int i = 0; i < n; ++i) {
+            v.insert(v.end(), a.begin(), a.end());
+        }
+    }
+
+    tempT void growthVector(std::vector<T> &v, int n) {
+        v.reserve(n * v.size());
+        std::vector<T> a = v;
+        v.clear();
+        for (int i = 0; i < a.size(); ++i) {
+            for (int j = 0; j < n; ++j) {
+                v.insert(v.begin() + i * n + j, a.at(i));
+            }
+        }
+    }
+
+    tempT void CartiProductsimple(std::vector<T> v1, std::vector<T> v2) {
+        std::vector<std::vector<T>> ans;
+        int i = v1.size();
+        growthVector(v1, v2.size());
+        CopyVectorToItSelf(v2, i);
+    }
+
+    tempT void CartiProduct(std::vector<std::vector<T>> &vecs, int n = 1) {
+        if (vecs.size() - 1 != n - 1) {
+            int s = vecs.at(0).size();
+            for (int i = 0; i < n; ++i) {
+                growthVector(vecs.at(i), (int) vecs.at(n).size());
+            }
+            CopyVectorToItSelf(vecs.at(n), s);
+            int q = n + 1;
+            CartiProduct(vecs, q);
+        }
+    }
+
+    tempT std::vector<std::vector<T>> CartiProduct(std::initializer_list<std::vector<T>> vecs, int n = 1) {
+        std::vector<std::vector<T>> temp;
+        for (auto vec: vecs)
+            temp.push_back(vec);
+        CartiProduct(temp);
+        return temp;
+    }
 }
 #endif //MATHUTILS_UTILS_H
