@@ -88,10 +88,10 @@ int main() {
 }
 
 ```
-![Alt text](https://github.com/nort3x/MathUtils/blob/master/box_func.png)
+![alt text](https://github.com/nort3x/MathUtils/blob/master/imgs/box_func.png)
 
 
-![Alt text](https://github.com/nort3x/MathUtils/blob/master/box_func_diff.png)
+![alt text](https://github.com/nort3x/MathUtils/blob/master/imgs/box_func_diff.png)
 
 
-![Alt text](https://github.com/nort3x/MathUtils/blob/master/comp_func.png)
+![alt text](https://github.com/nort3x/MathUtils/blob/master/imgs/comp_func.png)
