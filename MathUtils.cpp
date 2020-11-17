@@ -3,7 +3,7 @@
 
 #include "DataType.h"
 #include "cmath"
-#include "library.h"
+#include "MathUtils.h"
 #include "cstdarg"
 #include "Utils.h"
 
@@ -17,7 +17,7 @@ tempT void Calculus::Misc<T>::StartBeforeEnd(T &start, T &end) {
 
 
 tempTK K
-Calculus::SingleVar::EquationSolver<T, K>::BisectionZeroFinder(RealFunction1D &function1D, K a, K b, T accuracy) {
+Calculus::SingleVar::EquationSolver<T, K>::BisectionZeroFinder(Function1D<T,K> &function1D, K a, K b, T accuracy) {
 
     if (function1D(a) * function1D(b) < 0) {
         K answer = (a + b) * 0.5;
@@ -37,9 +37,9 @@ Calculus::SingleVar::EquationSolver<T, K>::BisectionZeroFinder(RealFunction1D &f
 }
 
 tempTK K
-Calculus::SingleVar::EquationSolver<T, K>::Newton_Raphson(RealFunction1D &function1D, K init_p, T accuracy, int MaxTry,
-                                                          T(*diifer)(const RealFunction1D &function, K s, K p)) {
-    RealFunction1D f_prime = [&function1D, &accuracy, &diifer](K x) {
+Calculus::SingleVar::EquationSolver<T, K>::Newton_Raphson(Function1D<T,K> &function1D, K init_p, T accuracy, int MaxTry,
+                                                          T(*diifer)(const Function1D<T,K> &function, K s, K p)) {
+    Function1D<T,K> f_prime = [&function1D, &accuracy, &diifer](K x) {
         return diifer(function1D, accuracy, x);
     };
     int n = 0;
@@ -55,50 +55,50 @@ Calculus::SingleVar::EquationSolver<T, K>::Newton_Raphson(RealFunction1D &functi
 }
 
 
-tempTK T Calculus::SingleVar::Differentiation<T, K>::Forward1D(const RealFunction1D &rf, K StepSize, K atPoint) {
+tempTK T Calculus::SingleVar::Differentiation<T, K>::Forward1D(const Function1D<T,K> &rf, K StepSize, K atPoint) {
     return (rf(atPoint + StepSize) - rf(atPoint)) / StepSize;
 }
 
-tempTK std::function<T(K)> Calculus::SingleVar::Differentiation<T, K>::Forward1D(const RealFunction1D &rf, K StepSize) {
+tempTK std::function<T(K)> Calculus::SingleVar::Differentiation<T, K>::Forward1D(const Function1D<T,K> &rf, K StepSize) {
     return [&rf, StepSize](K k) {
         return Forward1D(rf, StepSize, k);
     };
 }
 
-tempTK T Calculus::SingleVar::Differentiation<T, K>::Backward1D(const RealFunction1D &rf, K StepSize, K atPoint) {
+tempTK T Calculus::SingleVar::Differentiation<T, K>::Backward1D(const Function1D<T,K> &rf, K StepSize, K atPoint) {
     return Differentiation::Forward1D(rf, -StepSize, atPoint);
 }
 
-tempTK std::function<T(K)> Calculus::SingleVar::Differentiation<T, K>::Backward1D(const RealFunction1D &rf, K StepSize) {
+tempTK std::function<T(K)> Calculus::SingleVar::Differentiation<T, K>::Backward1D(const Function1D<T,K> &rf, K StepSize) {
     return [&rf, StepSize](K x) {
         return Backward1D(rf, StepSize, x);
     };
 }
 
-tempTK T Calculus::SingleVar::Differentiation<T, K>::ThreePointMidPoint1D(const RealFunction1D &rf, K StepSize, K atPoint) {
+tempTK T Calculus::SingleVar::Differentiation<T, K>::ThreePointMidPoint1D(const Function1D<T,K> &rf, K StepSize, K atPoint) {
     return (rf(atPoint + StepSize) - rf(atPoint - StepSize)) / (2 * StepSize);
 }
 
-tempTK std::function<T(K)> Calculus::SingleVar::Differentiation<T, K>::ThreePointMidPoint1D(const RealFunction1D &rf, K StepSize) {
+tempTK std::function<T(K)> Calculus::SingleVar::Differentiation<T, K>::ThreePointMidPoint1D(const Function1D<T,K> &rf, K StepSize) {
     return [&rf, StepSize](K x) {
         return ThreePointMidPoint1D(rf, StepSize, x);
     };
 }
 
-tempTK T Calculus::SingleVar::Differentiation<T, K>::FivePointMidPoint1D(const RealFunction1D &rf, K StepSize, K atPoint) {
+tempTK T Calculus::SingleVar::Differentiation<T, K>::FivePointMidPoint1D(const Function1D<T,K> &rf, K StepSize, K atPoint) {
 
     return (double(4) * ThreePointMidPoint1D(rf, StepSize, atPoint) - ThreePointMidPoint1D(rf, 2 * StepSize, atPoint)) /
            double(3);
 }
 
-tempTK std::function<T(K)> Calculus::SingleVar::Differentiation<T, K>::FivePointMidPoint1D(const RealFunction1D &rf, K StepSize) {
+tempTK std::function<T(K)> Calculus::SingleVar::Differentiation<T, K>::FivePointMidPoint1D(const Function1D<T,K> &rf, K StepSize) {
     return [&rf, StepSize](K x) {
         return FivePointMidPoint1D(rf, StepSize, x);
     };
 }
 
-tempTK T Calculus::SingleVar::Differentiation<T, K>::NthDiff(T (*differentiator)(const RealFunction1D &rf, K StepSize, K atPoint),
-                                        const RealFunction1D &rf, K StepSize, K atPoint, int n) {
+tempTK T Calculus::SingleVar::Differentiation<T, K>::NthDiff(T (*differentiator)(const Function1D<T,K> &rf, K StepSize, K atPoint),
+                                        const Function1D<T,K> &rf, K StepSize, K atPoint, int n) {
 
     if (n > 0) {
 
@@ -111,8 +111,8 @@ tempTK T Calculus::SingleVar::Differentiation<T, K>::NthDiff(T (*differentiator)
     }
 }
 
-tempTK std::function<T(K)> Calculus::SingleVar::Differentiation<T, K>::NthDiff(T (*differentiator)(const RealFunction1D &, K, K),
-                                                          const RealFunction1D &rf, K StepSize, int n) {
+tempTK std::function<T(K)> Calculus::SingleVar::Differentiation<T, K>::NthDiff(T (*differentiator)(const Function1D<T,K> &, K, K),
+                                                          const Function1D<T,K> &rf, K StepSize, int n) {
     return [&differentiator, &rf, StepSize, n](K x) {
         return NthDiff(differentiator, rf, StepSize, x, n);
     };
@@ -151,13 +151,13 @@ tempTK std::function<T(K)> Calculus::SingleVar::Interpolation<T, K>::LagrangePol
 }
 
 tempTK std::function<T(K)>
-Calculus::SingleVar::Interpolation<T, K>::LagrangePolynomialFromFunctionSimpleStep(const RealFunction1D& function1D, int samples,
+Calculus::SingleVar::Interpolation<T, K>::LagrangePolynomialFromFunctionSimpleStep(const Function1D<T,K>& function1D, int samples,
                                                               K start, K end) {
     Misc<T>::StartBeforeEnd(start, end);
     return LagrangePolynomialFromDataSetWithNPoint(Calculus::SingleVar::Sampler<T,K>::FunctionSampler(function1D,start,end,samples));
 }
 
-tempTK std::function<T(K)> Calculus::SingleVar::Interpolation<T, K>::LagrangePolynomialFromFunctionChebyshevNodes(const RealFunction1D &function1D,
+tempTK std::function<T(K)> Calculus::SingleVar::Interpolation<T, K>::LagrangePolynomialFromFunctionChebyshevNodes(const Function1D<T,K> &function1D,
                                                                                              int samples, T start,
                                                                                              T end) {
     Misc<T>::StartBeforeEnd(start, end);
@@ -166,7 +166,7 @@ tempTK std::function<T(K)> Calculus::SingleVar::Interpolation<T, K>::LagrangePol
 
 tempTK Algebric::MultiDimPoint<T>
 Calculus::SingleVar::Interpolation<T, K>::LinearRegression2D_parameters(std::vector<Algebric::MultiDimPoint<T>> arr, T accuracy,
-                                                   T(*diifer)(const RealFunction1D &function, K s, K p), int MaxTry) {
+                                                   T(*diifer)(const Function1D<T,K> &function, K s, K p), int MaxTry) {
     if (arr.at(0).getDim() == 2) { //its 2d reg
         int NumberOfPoints = arr.size();
         T X = 0;
@@ -183,7 +183,7 @@ Calculus::SingleVar::Interpolation<T, K>::LinearRegression2D_parameters(std::vec
             }
         }
 
-        RealFunction1D finalFunction_a = [&arr, &NumberOfPoints, &X, &Y](T a) {
+        Function1D<T,K> finalFunction_a = [&arr, &NumberOfPoints, &X, &Y](T a) {
             T FirstSigma = 0;
             T SecondSigma = 0;
             T temp;
@@ -204,7 +204,7 @@ Calculus::SingleVar::Interpolation<T, K>::LinearRegression2D_parameters(std::vec
 
 
 tempTK std::function<T(K)>
-Calculus::SingleVar::Integration<T, K>::SimpleIndefinite(const RealFunction1D &function1D, K lowerbound, K stepSize) {
+Calculus::SingleVar::Integration<T, K>::SimpleIndefinite(const Function1D<T,K> &function1D, K lowerbound, K stepSize) {
     return [function1D, lowerbound, stepSize](K x) {
         int chunks = std::abs(x - lowerbound) / stepSize;
         K answer = 0;
@@ -215,12 +215,12 @@ Calculus::SingleVar::Integration<T, K>::SimpleIndefinite(const RealFunction1D &f
     };
 }
 
-tempTK T Calculus::SingleVar::Integration<T, K>::SimpleDefinite(const RealFunction1D &function1D, K LowerBound, K UpperBound, K stepsize) {
+tempTK T Calculus::SingleVar::Integration<T, K>::SimpleDefinite(const Function1D<T,K> &function1D, K LowerBound, K UpperBound, K stepsize) {
     return Integration::SimpleIndefinite(function1D, LowerBound, stepsize)(UpperBound);
 }
 
 tempTK std::function<T(K)>
-Calculus::SingleVar::Integration<T, K>::SimpsonIndefiniteClosed(const RealFunction1D &function1D, K LowerBound, K stepSize) {
+Calculus::SingleVar::Integration<T, K>::SimpsonIndefiniteClosed(const Function1D<T,K> &function1D, K LowerBound, K stepSize) {
     return [function1D, LowerBound, stepSize](K x) {
         int n = (x - LowerBound) / stepSize;
         K answer = 0;
@@ -233,7 +233,7 @@ Calculus::SingleVar::Integration<T, K>::SimpsonIndefiniteClosed(const RealFuncti
     };
 }
 
-tempTK T Calculus::SingleVar::Integration<T, K>::SimpsonDefiniteClosed(const RealFunction1D &function1D, K LowerBound, K UpperBound,
+tempTK T Calculus::SingleVar::Integration<T, K>::SimpsonDefiniteClosed(const Function1D<T,K> &function1D, K LowerBound, K UpperBound,
                                                   K stepSize) {
     return SimpsonIndefiniteClosed(function1D, LowerBound, stepSize)(UpperBound);
 }
@@ -241,7 +241,7 @@ tempTK T Calculus::SingleVar::Integration<T, K>::SimpsonDefiniteClosed(const Rea
 
 tempTK std::vector<K> Calculus::SingleVar::Sampler<T, K>::linespace(K a, K b, int n) {
     std::vector<K> lin;
-    lin.reserve(n);
+    lin.reserve(n+1);
     for (int i = 0; i <= n; ++i) {
         lin.insert(lin.begin() + i, a + (i * ((b-a)/ n)));
     }
@@ -314,13 +314,13 @@ tempTK void Calculus::MultiVar::Scalar::Sampler<T,K>::SampledScalarFunction::fit
         col.resize(i);
 
 }
-tempTK  std::vector<std::vector<K>> Calculus::MultiVar::Scalar::Sampler<T,K>::MlineSpace(const std::initializer_list<const linspace>& args){
-    std::vector<std::vector<K>> ans;
+tempT  std::vector<std::vector<T>> Calculus::MultiVar::MlineSpace(const std::initializer_list<const linspace<T>>& args){
+    std::vector<std::vector<T>> ans;
 
     for(auto l: args){
-        ans.push_back(std::vector<K>());
+        ans.push_back(std::vector<T>());
         for (int i = 0; i <= l.n; ++i) {
-            ans.at(ans.size()-1).push_back(l.a + i*((l.b-l.a)/(K)l.n));
+            ans.at(ans.size()-1).push_back(l.a + i*((l.b-l.a)/(T)l.n));
         }
     }
     Utils::CartiProduct(ans);
@@ -328,7 +328,7 @@ tempTK  std::vector<std::vector<K>> Calculus::MultiVar::Scalar::Sampler<T,K>::Ml
 }
 
 tempTK typename Calculus::MultiVar::Scalar::Sampler<T,K>::SampledScalarFunction Calculus::MultiVar::Scalar::Sampler<T,K>::FunctionSampler(
-        const std::function<T(Algebric::MultiDimPoint<K>)> &rf, const std::initializer_list<const linspace> &args) {
+        const std::function<T(Algebric::MultiDimPoint<K>)> &rf, const std::initializer_list<const linspace<K>> &args) {
     Calculus::MultiVar::Scalar::Sampler<T,K>::SampledScalarFunction s;
     for(auto l:args)
         s.numberOfsamples.push_back(l.n);
@@ -348,7 +348,7 @@ tempTK typename Calculus::MultiVar::Scalar::Sampler<T,K>::SampledScalarFunction 
 }
 
 template<typename T,typename K>  typename Calculus::MultiVar::Scalar::Sampler<T,K>::SampledScalarFunction Calculus::MultiVar::Scalar::Sampler<T,K>::FunctionSamplerChebyshevNodes(
-        const std::function<T(Algebric::MultiDimPoint<K>)> &rf, std::initializer_list<const linspace> &args) {
+        const std::function<T(Algebric::MultiDimPoint<K>)> &rf, std::initializer_list<const linspace<K>> &args) {
     Calculus::MultiVar::Scalar::Sampler<T,K>::SampledScalarFunction s;
     for(auto l:args){
         s.variables.push_back(std::vector<K>());
@@ -370,16 +370,103 @@ template<typename T,typename K>  typename Calculus::MultiVar::Scalar::Sampler<T,
     return s;
 }
 
+tempTK std::function<T (K)> Calculus::MultiVar::Scalar::asSingleVar(const std::function<T(Algebric::MultiDimPoint<K>)> &rf,
+                                                             int index,const Algebric::MultiDimPoint<K> &init_vec) {
+    return[rf,index,init_vec](K x)->T{
+        Algebric::MultiDimPoint<K> a =init_vec;
+        a[index] = x;
+        return rf(a);
+    };
+}
+
 tempTK std::function<T(Algebric::MultiDimPoint<K>)> Calculus::MultiVar::Scalar::Differentiation::Partial(
         const std::function<T(Algebric::MultiDimPoint<K>)> &rf, T (*Differ)(const std::function<T(K)> &, K, K),
         int Index, K accuracy) {
     return [rf,Differ,Index,accuracy](Algebric::MultiDimPoint<K> vec)->T{
-        return Differ([rf,Index,vec](K x)->T{
-            Algebric::MultiDimPoint<K> a = vec;
-            a[Index] = x;
-            return rf(a);
-            },accuracy,vec.getValue(Index));
+        return Differ(Calculus::MultiVar::Scalar::asSingleVar<T,K>(rf,Index,vec),accuracy,vec.getValue(Index));
     };
 }
+tempTK std::function<Algebric::MultiDimPoint<T> (Algebric::MultiDimPoint<K>)> Calculus::MultiVar::Scalar::Differentiation::Gradiant(
+        const std::function<T(Algebric::MultiDimPoint<K>)> & rf, differ<T, K> d, K accuracy) {
+    return [rf,d,accuracy](Algebric::MultiDimPoint<K> vec_in)->Algebric::MultiDimPoint<T>{
+        Algebric::MultiDimPoint<T> vecout(vec_in.getDim());
+        T value;
+        for (int i = 0; i < vec_in.getDim(); ++i) {
+            value = Calculus::MultiVar::Scalar::Differentiation::Partial(rf,d,i,accuracy)(vec_in);
+            vecout.setValue(value,i);
+        }
+        return vecout;
+    };
+}
+
+tempTK void Calculus::MultiVar::VectorValued::Sampler<T,K>::SampledVectorFunction::fitSize() const {
+    int min = std::min((int)variables.at(0).size(),(int)function.at(0).size());
+    for(auto l: variables)
+        min = std::min((int)l.size(),min);
+    for(auto l: function)
+        min = std::min((int)l.size(),min);
+
+    for(auto l : variables)
+        l.resize(min);
+    for(auto l: function)
+        l.resize(min);
+}
+
+tempTK typename Calculus::MultiVar::VectorValued::Sampler<T,K>::SampledVectorFunction Calculus::MultiVar::VectorValued::Sampler<T,K>
+        ::FunctionSampler(
+        const std::function<Algebric::MultiDimPoint<T>(Algebric::MultiDimPoint<K>)> &rf,
+        const std::initializer_list<const linspace<K>> &args) {
+    Calculus::MultiVar::VectorValued::Sampler<T, K>::SampledVectorFunction s;
+    for (auto l:args)
+        s.numberOfsamples.push_back(l.n);
+    s.variables = MlineSpace(args);
+
+    if (s.variables.size() > 0) {
+        for (int j = 0; j < s.variables.at(0).size(); ++j) {
+            Algebric::MultiDimPoint<K> temp(s.variables.size());
+            for (int i = 0; i < s.variables.size(); ++i) {
+                temp.setValue(s.variables.at(i).at(j), i);
+            }
+            s.function.push_back(rf(temp).getVec());
+        }
+
+    }
+    return s;
+}
+
+template<typename T, typename K> std::function<T(K)> Calculus::SingleVar::ODE<T, K>::EulerMethodFirstOrder
+(const std::function<T(T,K)> &F_y_t ,const K& t0,const T& y0, const K& stepsize) {
+    std::function<T(K)> f = [&](K t){
+        int n = std::abs(((t-t0)/stepsize)) +1 ; // integer always round-off so i ceil it by adding 1
+        K stepsize_shifted = (t-t0)/n;          // shifting step size for integer n
+
+        T ans = y0;
+        for (int i = 0; i <= n; ++i) {
+            ans = ans + stepsize_shifted*(F_y_t(ans,t0+i*stepsize_shifted));
+            // y(t[i+1]) = y(t[i]) + Dt * f(t[i],y(t[i]))
+        }
+        return ans;
+    };
+    return f;
+}
+
+tempTK std::function<T (Algebric::MultiDimPoint<K>)> Calculus::MultiVar::Scalar::Integration::Partial(
+        const std::function<T(Algebric::MultiDimPoint<K>)> &rf, const intergrator<T, K> &d, int Index, K accuracy,
+        K lowerBand) {
+    return [rf,Index,accuracy,lowerBand,d](const Algebric::MultiDimPoint<K>& vec)->T{
+        return d(Calculus::MultiVar::Scalar::asSingleVar<T,K>(rf,Index,vec),lowerBand,vec.getValue(Index),accuracy);
+    };
+}
+
+tempTK std::function<T (Algebric::MultiDimPoint<K>)> Calculus::MultiVar::withConstIndex(
+        const std::function<T(Algebric::MultiDimPoint<K>)> &rf, int index, K value) {
+    return [rf,index,value](Algebric::MultiDimPoint<K> vec)->T{
+        vec.setValue(value,index);
+        return rf(vec);
+    };
+}
+
+
+
 
 #endif

@@ -6,11 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/root/Desktop/MathUtils/DataType.cpp
+/root/Dev/CLionProjects/MathUtils/DataType.cpp
+cmath
+-
 DataType.h
-/root/Desktop/MathUtils/DataType.h
+/root/Dev/CLionProjects/MathUtils/DataType.h
 
-/root/Desktop/MathUtils/DataType.h
+/root/Dev/CLionProjects/MathUtils/DataType.h
 ostream
 -
 functional
@@ -18,19 +20,37 @@ functional
 vector
 -
 DataType.cpp
-/root/Desktop/MathUtils/DataType.cpp
+/root/Dev/CLionProjects/MathUtils/DataType.cpp
 
-/root/Desktop/MathUtils/Utils.h
-ostream
+/root/Dev/CLionProjects/MathUtils/MathUtils.cpp
+DataType.h
+/root/Dev/CLionProjects/MathUtils/DataType.h
+cmath
+/root/Dev/CLionProjects/MathUtils/cmath
+MathUtils.h
+/root/Dev/CLionProjects/MathUtils/MathUtils.h
+cstdarg
+/root/Dev/CLionProjects/MathUtils/cstdarg
+Utils.h
+/root/Dev/CLionProjects/MathUtils/Utils.h
+
+/root/Dev/CLionProjects/MathUtils/MathUtils.h
+DataType.h
+/root/Dev/CLionProjects/MathUtils/DataType.h
+MathUtils.cpp
+/root/Dev/CLionProjects/MathUtils/MathUtils.cpp
+
+/root/Dev/CLionProjects/MathUtils/Utils.h
+iostream
 -
 fstream
 -
 chrono
-/root/Desktop/MathUtils/chrono
+/root/Dev/CLionProjects/MathUtils/chrono
 iomanip
-/root/Desktop/MathUtils/iomanip
+/root/Dev/CLionProjects/MathUtils/iomanip
 
-/root/Desktop/MathUtils/gnuplot.h
+/root/Dev/CLionProjects/MathUtils/gnuplot.h
 string
 -
 vector
@@ -38,37 +58,11 @@ vector
 fstream
 -
 Utils.h
-/root/Desktop/MathUtils/Utils.h
+/root/Dev/CLionProjects/MathUtils/Utils.h
 
-/root/Desktop/MathUtils/library.cpp
-DataType.h
-/root/Desktop/MathUtils/DataType.h
-cmath
-/root/Desktop/MathUtils/cmath
-library.h
-/root/Desktop/MathUtils/library.h
-cstdarg
-/root/Desktop/MathUtils/cstdarg
-Utils.h
-/root/Desktop/MathUtils/Utils.h
-
-/root/Desktop/MathUtils/library.h
-DataType.h
-/root/Desktop/MathUtils/DataType.h
-library.cpp
-/root/Desktop/MathUtils/library.cpp
-
-/root/Desktop/MathUtils/main.cpp
-iostream
--
-library.h
-/root/Desktop/MathUtils/library.h
-DataType.h
-/root/Desktop/MathUtils/DataType.h
-cmath
-/root/Desktop/MathUtils/cmath
+/root/Dev/CLionProjects/MathUtils/main.cpp
+MathUtils.h
+/root/Dev/CLionProjects/MathUtils/MathUtils.h
 gnuplot.h
-/root/Desktop/MathUtils/gnuplot.h
-Utils.h
-/root/Desktop/MathUtils/Utils.h
+/root/Dev/CLionProjects/MathUtils/gnuplot.h
 

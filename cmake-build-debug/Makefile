@@ -59,19 +59,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /root/clion-2020.2.1/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /root/Dev/clion-2020.2.1/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /root/clion-2020.2.1/bin/cmake/linux/bin/cmake -E rm -f
+RM = /root/Dev/clion-2020.2.1/bin/cmake/linux/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /root/Desktop/MathUtils
+CMAKE_SOURCE_DIR = /root/Dev/CLionProjects/MathUtils
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /root/Desktop/MathUtils/cmake-build-debug
+CMAKE_BINARY_DIR = /root/Dev/CLionProjects/MathUtils/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -79,7 +79,7 @@ CMAKE_BINARY_DIR = /root/Desktop/MathUtils/cmake-build-debug
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/root/clion-2020.2.1/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/root/Dev/clion-2020.2.1/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -90,7 +90,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/root/clion-2020.2.1/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/root/Dev/clion-2020.2.1/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -100,9 +100,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/Desktop/MathUtils/cmake-build-debug/CMakeFiles /root/Desktop/MathUtils/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/Dev/CLionProjects/MathUtils/cmake-build-debug/CMakeFiles /root/Dev/CLionProjects/MathUtils/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/Desktop/MathUtils/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/Dev/CLionProjects/MathUtils/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -170,32 +170,32 @@ DataType.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MathUtils.dir/build.make CMakeFiles/MathUtils.dir/DataType.cpp.s
 .PHONY : DataType.cpp.s
 
-library.o: library.cpp.o
+MathUtils.o: MathUtils.cpp.o
 
-.PHONY : library.o
+.PHONY : MathUtils.o
 
 # target to build an object file
-library.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MathUtils.dir/build.make CMakeFiles/MathUtils.dir/library.cpp.o
-.PHONY : library.cpp.o
+MathUtils.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MathUtils.dir/build.make CMakeFiles/MathUtils.dir/MathUtils.cpp.o
+.PHONY : MathUtils.cpp.o
 
-library.i: library.cpp.i
+MathUtils.i: MathUtils.cpp.i
 
-.PHONY : library.i
+.PHONY : MathUtils.i
 
 # target to preprocess a source file
-library.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MathUtils.dir/build.make CMakeFiles/MathUtils.dir/library.cpp.i
-.PHONY : library.cpp.i
+MathUtils.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MathUtils.dir/build.make CMakeFiles/MathUtils.dir/MathUtils.cpp.i
+.PHONY : MathUtils.cpp.i
 
-library.s: library.cpp.s
+MathUtils.s: MathUtils.cpp.s
 
-.PHONY : library.s
+.PHONY : MathUtils.s
 
 # target to generate assembly for a file
-library.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MathUtils.dir/build.make CMakeFiles/MathUtils.dir/library.cpp.s
-.PHONY : library.cpp.s
+MathUtils.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MathUtils.dir/build.make CMakeFiles/MathUtils.dir/MathUtils.cpp.s
+.PHONY : MathUtils.cpp.s
 
 main.o: main.cpp.o
 
@@ -236,9 +236,9 @@ help:
 	@echo "... DataType.o"
 	@echo "... DataType.i"
 	@echo "... DataType.s"
-	@echo "... library.o"
-	@echo "... library.i"
-	@echo "... library.s"
+	@echo "... MathUtils.o"
+	@echo "... MathUtils.i"
+	@echo "... MathUtils.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/MathUtils.dir/DataType.cpp.o"
-  "CMakeFiles/MathUtils.dir/library.cpp.o"
+  "CMakeFiles/MathUtils.dir/MathUtils.cpp.o"
   "CMakeFiles/MathUtils.dir/main.cpp.o"
   "MathUtils"
   "MathUtils.pdb"

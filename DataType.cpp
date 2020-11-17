@@ -1,5 +1,7 @@
 #ifndef MATHUTILS_DATATYPE_CPP
 #define MATHUTILS_DATATYPE_CPP
+
+#include <cmath>
 #include "DataType.h"
 #define tempT template<typename T>
 
@@ -35,8 +37,16 @@ Algebric::MultiDimPoint<T>::MultiDimPoint(const std::vector<T>& vec ) {
     dim = vec.size();
 }
 
-
-
+tempT T Algebric::MultiDimPoint<T>::Norm() const{
+    T t;
+    for(auto i: mdp){
+        t += i*i;
+    }
+    return std::sqrt(t);
+}
+tempT std::vector<T> Algebric::MultiDimPoint<T>::getVec() const {
+    return mdp;
+}
 ///////////// matrix///////////////
 
 

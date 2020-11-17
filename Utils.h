@@ -5,7 +5,7 @@
 #ifndef MATHUTILS_UTILS_H
 #define MATHUTILS_UTILS_H
 
-#include <ostream>
+#include <iostream>
 #include <fstream>
 #include "chrono"
 #include "iomanip"
@@ -30,6 +30,17 @@ namespace Utils{
         friend std::ostream& operator<<(std::ostream& stream,const Timer& t){
             stream<<std::setprecision(10)<<t.readNow().count()<<" s\n";
             return stream;
+        }
+    };
+    class ScopeTimer: Timer{
+        std::ostream* s;
+    public:
+        ScopeTimer(std::ostream& strm ){
+            this->s = &strm;
+        }
+
+        ~ScopeTimer(){
+            (*s)<< *this;
         }
     };
 
@@ -80,6 +91,34 @@ namespace Utils{
         file.close();
         return rpath;
     }
+
+    tempTK std::string WriteDataToFile(const typename Calculus::SingleVar::Sampler<T,K>::SampledFunction s,
+                                       const std::string &path="",const int& precision=10){
+
+        std::fstream file;
+        std::string rpath;
+        file<<std::setprecision(10);
+
+        if (path.empty()){
+            rpath = tempnam("1","1234567890");
+            file.open(rpath,std::ios::out);
+        } else{
+            rpath = path;
+            file.open(rpath,std::ios::out);
+        }
+        if(file.is_open()){
+            file<<"#DATA BEGINS\n";
+            s.fitSize();
+
+            for (int i = 0; i < s.y.size(); ++i) {
+                file<<s.x.at(i)<<"\t";
+                file<<s.y.at(i)<<"\n";
+            }
+            file<<"#DATA ENDS\n\n";
+        }
+        file.close();
+        return rpath;
+    }
     tempTK std::string WriteDataToFile(const typename Calculus::MultiVar::Scalar::Sampler<T,K>::SampledScalarFunction s,
                                        const std::string &path="",const int& precision=10){
 
@@ -104,6 +143,40 @@ namespace Utils{
                 for(auto cor:s.variables)
                     file<<cor.at(i)<<"\t";
                 file<<s.function.at(i)<<"\n";
+
+
+            }
+            file<<"#DATA ENDS\n\n";
+        }
+        file.close();
+        return rpath;
+    }
+    tempTK std::string WriteDataToFile(const typename Calculus::MultiVar::VectorValued::Sampler<T,K>::SampledVectorFunction s,
+                                       const std::string &path="",const int& precision=10){
+
+        std::fstream file;
+        std::string rpath;
+        file<<std::setprecision(10);
+
+        if (path.empty()){
+            rpath = tempnam("1","1234567890");
+            file.open(rpath,std::ios::out);
+        } else{
+            rpath = path;
+            file.open(rpath,std::ios::out);
+        }
+        if(file.is_open()){
+            file<<"#DATA BEGINS\n";
+            s.fitSize();
+
+            for (int i = 0; i < s.function.size(); ++i) {
+                if( i%(s.numberOfsamples.at(0)+1) == 0 )
+                    file<<"\n";
+                for(auto cor:s.variables)
+                    file<<cor.at(i)<<"\t";
+                for(auto p:s.function.at(i))
+                    file<<p<<"\t";
+                file<<"\n";
 
 
             }
@@ -144,7 +217,7 @@ namespace Utils{
             for (int i = 0; i < n; ++i) {
                 growthVector(vecs.at(i),(int)vecs.at(n).size());
             }
-            CopyVectorToItSelf(vecs.at(n),s);
+            CopyVectorToItSelf(vecs.at(n),s-1);
             int q = n+1;
             CartiProduct(vecs,q);
         }

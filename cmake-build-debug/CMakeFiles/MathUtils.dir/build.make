@@ -54,19 +54,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /root/clion-2020.2.1/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /root/Dev/clion-2020.2.1/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /root/clion-2020.2.1/bin/cmake/linux/bin/cmake -E rm -f
+RM = /root/Dev/clion-2020.2.1/bin/cmake/linux/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /root/Desktop/MathUtils
+CMAKE_SOURCE_DIR = /root/Dev/CLionProjects/MathUtils
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /root/Desktop/MathUtils/cmake-build-debug
+CMAKE_BINARY_DIR = /root/Dev/CLionProjects/MathUtils/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/MathUtils.dir/depend.make
@@ -79,58 +79,58 @@ include CMakeFiles/MathUtils.dir/flags.make
 
 CMakeFiles/MathUtils.dir/main.cpp.o: CMakeFiles/MathUtils.dir/flags.make
 CMakeFiles/MathUtils.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/Desktop/MathUtils/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/MathUtils.dir/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MathUtils.dir/main.cpp.o -c /root/Desktop/MathUtils/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/Dev/CLionProjects/MathUtils/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/MathUtils.dir/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MathUtils.dir/main.cpp.o -c /root/Dev/CLionProjects/MathUtils/main.cpp
 
 CMakeFiles/MathUtils.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MathUtils.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/Desktop/MathUtils/main.cpp > CMakeFiles/MathUtils.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/Dev/CLionProjects/MathUtils/main.cpp > CMakeFiles/MathUtils.dir/main.cpp.i
 
 CMakeFiles/MathUtils.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MathUtils.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/Desktop/MathUtils/main.cpp -o CMakeFiles/MathUtils.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/Dev/CLionProjects/MathUtils/main.cpp -o CMakeFiles/MathUtils.dir/main.cpp.s
 
-CMakeFiles/MathUtils.dir/library.cpp.o: CMakeFiles/MathUtils.dir/flags.make
-CMakeFiles/MathUtils.dir/library.cpp.o: ../library.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/Desktop/MathUtils/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/MathUtils.dir/library.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MathUtils.dir/library.cpp.o -c /root/Desktop/MathUtils/library.cpp
+CMakeFiles/MathUtils.dir/MathUtils.cpp.o: CMakeFiles/MathUtils.dir/flags.make
+CMakeFiles/MathUtils.dir/MathUtils.cpp.o: ../MathUtils.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/Dev/CLionProjects/MathUtils/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/MathUtils.dir/MathUtils.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MathUtils.dir/MathUtils.cpp.o -c /root/Dev/CLionProjects/MathUtils/MathUtils.cpp
 
-CMakeFiles/MathUtils.dir/library.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MathUtils.dir/library.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/Desktop/MathUtils/library.cpp > CMakeFiles/MathUtils.dir/library.cpp.i
+CMakeFiles/MathUtils.dir/MathUtils.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MathUtils.dir/MathUtils.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/Dev/CLionProjects/MathUtils/MathUtils.cpp > CMakeFiles/MathUtils.dir/MathUtils.cpp.i
 
-CMakeFiles/MathUtils.dir/library.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MathUtils.dir/library.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/Desktop/MathUtils/library.cpp -o CMakeFiles/MathUtils.dir/library.cpp.s
+CMakeFiles/MathUtils.dir/MathUtils.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MathUtils.dir/MathUtils.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/Dev/CLionProjects/MathUtils/MathUtils.cpp -o CMakeFiles/MathUtils.dir/MathUtils.cpp.s
 
 CMakeFiles/MathUtils.dir/DataType.cpp.o: CMakeFiles/MathUtils.dir/flags.make
 CMakeFiles/MathUtils.dir/DataType.cpp.o: ../DataType.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/Desktop/MathUtils/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/MathUtils.dir/DataType.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MathUtils.dir/DataType.cpp.o -c /root/Desktop/MathUtils/DataType.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/Dev/CLionProjects/MathUtils/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/MathUtils.dir/DataType.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MathUtils.dir/DataType.cpp.o -c /root/Dev/CLionProjects/MathUtils/DataType.cpp
 
 CMakeFiles/MathUtils.dir/DataType.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MathUtils.dir/DataType.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/Desktop/MathUtils/DataType.cpp > CMakeFiles/MathUtils.dir/DataType.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/Dev/CLionProjects/MathUtils/DataType.cpp > CMakeFiles/MathUtils.dir/DataType.cpp.i
 
 CMakeFiles/MathUtils.dir/DataType.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MathUtils.dir/DataType.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/Desktop/MathUtils/DataType.cpp -o CMakeFiles/MathUtils.dir/DataType.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/Dev/CLionProjects/MathUtils/DataType.cpp -o CMakeFiles/MathUtils.dir/DataType.cpp.s
 
 # Object files for target MathUtils
 MathUtils_OBJECTS = \
 "CMakeFiles/MathUtils.dir/main.cpp.o" \
-"CMakeFiles/MathUtils.dir/library.cpp.o" \
+"CMakeFiles/MathUtils.dir/MathUtils.cpp.o" \
 "CMakeFiles/MathUtils.dir/DataType.cpp.o"
 
 # External object files for target MathUtils
 MathUtils_EXTERNAL_OBJECTS =
 
 MathUtils: CMakeFiles/MathUtils.dir/main.cpp.o
-MathUtils: CMakeFiles/MathUtils.dir/library.cpp.o
+MathUtils: CMakeFiles/MathUtils.dir/MathUtils.cpp.o
 MathUtils: CMakeFiles/MathUtils.dir/DataType.cpp.o
 MathUtils: CMakeFiles/MathUtils.dir/build.make
 MathUtils: CMakeFiles/MathUtils.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/root/Desktop/MathUtils/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable MathUtils"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/root/Dev/CLionProjects/MathUtils/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable MathUtils"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/MathUtils.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -143,6 +143,6 @@ CMakeFiles/MathUtils.dir/clean:
 .PHONY : CMakeFiles/MathUtils.dir/clean
 
 CMakeFiles/MathUtils.dir/depend:
-	cd /root/Desktop/MathUtils/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /root/Desktop/MathUtils /root/Desktop/MathUtils /root/Desktop/MathUtils/cmake-build-debug /root/Desktop/MathUtils/cmake-build-debug /root/Desktop/MathUtils/cmake-build-debug/CMakeFiles/MathUtils.dir/DependInfo.cmake --color=$(COLOR)
+	cd /root/Dev/CLionProjects/MathUtils/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /root/Dev/CLionProjects/MathUtils /root/Dev/CLionProjects/MathUtils /root/Dev/CLionProjects/MathUtils/cmake-build-debug /root/Dev/CLionProjects/MathUtils/cmake-build-debug /root/Dev/CLionProjects/MathUtils/cmake-build-debug/CMakeFiles/MathUtils.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/MathUtils.dir/depend
 

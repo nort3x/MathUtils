@@ -22,13 +22,16 @@ namespace Algebric{
         MultiDimPoint& setValue(T p,const int& index);
         T getValue(int index) const;
         int getDim() const;
-
+        std::vector<T> getVec()const;
         const T& operator[](const int &index)const{
             return getValue(index);
         };
         T& operator[](const int &index){
             return (mdp.at(index));
         };
+
+        T Norm()const;
+
         friend std::ostream& operator<<(std::ostream& o ,const MultiDimPoint& mdPoint){
             o<<"(";
             for(int i=0 ; i<mdPoint.getDim();i++){
