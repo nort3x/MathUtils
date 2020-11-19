@@ -75,7 +75,11 @@ namespace Calculus{
         };
         tempTK class ODE{
         public:
-            static std::function<T(K)> EulerMethodFirstOrder(const std::function<T(T,K)> &F_y_t ,const K& t0,const T& y0,const K& stepsize);
+            static std::function<T(K)> EulerMethodFirstOrder(const std::function<T(T,K)> &F_y_t ,K t0,T y0, K stepsize);
+            static std::function<T(K)> Runge_KuttaFirstOrder(const std::function<T(T,K)> &F_y_t,K t0,T y0,K stepsize);
+
+            static std::function<T(K)> EulerMethodSecondOrder(const std::function<T(T,T,K)> &F_yp_y_t ,K t0,T yp0,T y0, K stepsize);
+
         };
 
     }
@@ -83,7 +87,6 @@ namespace Calculus{
         tempT struct linspace { T a;T b ; int n;};
         tempT std::vector<std::vector<T>> MlineSpace(const std::initializer_list<const linspace<T>>&);
         tempTK std::function<T(Algebric::MultiDimPoint<K>)> withConstIndex(const std::function<T(Algebric::MultiDimPoint<K>)> &rf,int index,K value);
-
         namespace Scalar{
             tempTK std::function<T(K)> asSingleVar(const std::function<T(Algebric::MultiDimPoint<K>)> &rf,int index,const Algebric::MultiDimPoint<K> &init_vec);
             tempTK class Sampler{
@@ -119,8 +122,22 @@ namespace Calculus{
                     void fitSize() const;
                     void avoidinf() const;
                 };
+                struct Curve{
+                    struct range{
+                        T min;
+                        T max;
+                    };
+                    mutable std::vector<K> variable;
+                    mutable std::vector<std::vector<T>> function;
+                    mutable std::vector<range> ranges;
+                    mutable std::vector<int> numberOfsamples;
+                    void fitSize() const;
+                    void avoidinf() const;
+                };
                 static SampledVectorFunction FunctionSampler(const std::function<Algebric::MultiDimPoint<T>(Algebric::MultiDimPoint<K>)> &rf,const std::initializer_list<const linspace<K>>&);
                 static SampledVectorFunction FunctionSamplerChebyshevNodes(const std::function<Algebric::MultiDimPoint<T>(Algebric::MultiDimPoint<K>)> &rf,const std::initializer_list<const linspace<K>>&);
+
+                static Curve CurveSampler(const std::function<Algebric::MultiDimPoint<T>(K)> &rf,const K& a,const K& b,int n);
             };
         }
     }

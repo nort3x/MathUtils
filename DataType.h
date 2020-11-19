@@ -29,6 +29,22 @@ namespace Algebric{
         T& operator[](const int &index){
             return (mdp.at(index));
         };
+        template<typename K> friend MultiDimPoint<T> operator*(const K& k,const MultiDimPoint<T> &o){
+            std::vector<T> t = o.getVec();
+            for(T &s:t)
+                s*=k;
+            return t;
+        }
+        MultiDimPoint<T> operator+(const MultiDimPoint<T> &vec2){
+            if(getDim() == vec2.getDim())
+            {
+                std::vector<T> res;
+                for (int i = 0; i < getDim(); ++i) {
+                    res.push_back(getValue(i)+vec2.getValue(i));
+                }
+                return res;
+            }
+        }
 
         T Norm()const;
 

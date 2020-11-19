@@ -185,6 +185,36 @@ namespace Utils{
         file.close();
         return rpath;
     }
+    tempTK std::string WriteDataToFile(const typename Calculus::MultiVar::VectorValued::Sampler<T,K>::Curve s,
+                                       const std::string &path="",const int& precision=10){
+
+        std::fstream file;
+        std::string rpath;
+        file<<std::setprecision(10);
+
+        if (path.empty()){
+            rpath = tempnam("1","1234567890");
+            file.open(rpath,std::ios::out);
+        } else{
+            rpath = path;
+            file.open(rpath,std::ios::out);
+        }
+        if(file.is_open()){
+            file<<"#DATA BEGINS\n";
+            s.fitSize();
+
+            for (int i = 0; i < s.function.size(); ++i) {
+                file<<s.variable.at(i)<<"\t";
+                for(auto p:s.function.at(i))
+                    file<<p<<"\t";
+                file<<"\n";
+            }
+            file<<"#DATA ENDS\n\n";
+        }
+        file.close();
+        return rpath;
+    }
+
 
     tempT void CopyVectorToItSelf(std::vector<T> &v, int n){
         v.reserve(v.size()*n);
