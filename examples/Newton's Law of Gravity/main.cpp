@@ -1,5 +1,5 @@
-#include "MathUtils.h"
-#include "gnuplot.h"
+#include "../../MathUtils.h"
+#include "../../gnuplot.h"
 
 
 int main() {

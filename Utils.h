@@ -61,6 +61,34 @@ namespace Utils{
 
     };
 
+    tempT std::string WriteDataToFile(const std::initializer_list<Algebric::MultiDimPoint<T>> &args,const std::string &path="",const int& precision=10){
+        std::fstream file;
+        std::string rpath;
+
+        file<<std::setprecision(precision);
+        if (path.empty()){
+            rpath = tempnam("1","1234567890");
+            file.open(rpath,std::ios::out);
+        } else{
+            rpath = path;
+            file.open(rpath,std::ios::out);
+        }
+        if(file.is_open()){
+            file<<"#DATA BEGINS\n";
+            for(auto vec : args){
+                for (int i = 0; i < vec.getDim(); ++i) {
+                    file<<vec[i]<<"\t";
+                }
+                file<<"\n";
+            }
+
+            file<<"#DATA ENDS\n\n";
+        }
+        file.close();
+        return rpath;
+
+    }
+
     template<typename T,size_t N> std::string WriteDataToFile(const std::vector<T> (&data)[N],const std::string &path="",const int& precision=10){
         std::fstream file;
         std::string rpath;

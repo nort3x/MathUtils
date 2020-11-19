@@ -153,12 +153,7 @@ namespace plt{
         tempTK void CurvePlot3D(const std::function<Algebric::MultiDimPoint<T>(K)>& curve_func,K a,K b,int n,const std::string& a_command="",const std::string& b_command="",const int& mode=0,const int&i=10,const std::string &path=""){
             auto c =Calculus::MultiVar::VectorValued::Sampler<T,K>::CurveSampler(curve_func,a,b,n);
             std::string rpath = Utils::WriteDataToFile<T,K>(c,path,i);
-            std::string script = b_command+";set xr ["+std::to_string(c.ranges.at(0).min)+':'+std::to_string(c.ranges.at(0).max)+"]";
-            if(c.ranges.size()>1)
-                script += ";set yr ["+std::to_string(c.ranges.at(1).min)+':'+std::to_string(c.ranges.at(1).max)+"]";
-            if(c.ranges.size()>2)
-                script += ";set zr ["+std::to_string(c.ranges.at(2).min)+':'+std::to_string(c.ranges.at(2).max)+"]";
-
+            std::string script = b_command;
             script+=(";splot  \'"+rpath+"\' " + a_command );
             gpc(script);
             if(path.empty())

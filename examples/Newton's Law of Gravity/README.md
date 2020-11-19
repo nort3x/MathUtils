@@ -1,5 +1,8 @@
-#include "MathUtils.h"
-#include "gnuplot.h"
+
+
+```cpp
+#include "../../MathUtils.h"
+#include "../../gnuplot.h"
 
 
 int main() {
@@ -24,3 +27,8 @@ int main() {
 "u 2:3:4 w l,"+p+"w p pt 7 ps 5 lc rgb \'gold\' notitle","set xr [-2:2];set yr [-2:2];set zr [-2:2]",0,10,"/root/Desktop/d.dat");
     return 0;
 }
+
+```
+
+
+![alt text](https://raw.githubusercontent.com/nort3x/MathUtils/master/examples/Newton%27s%20Law%20of%20Gravity/Screenshot_2020-11-19_16-54-12.png)

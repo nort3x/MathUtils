@@ -32,7 +32,7 @@ namespace Algebric{
         template<typename K> friend MultiDimPoint<T> operator*(const K& k,const MultiDimPoint<T> &o){
             std::vector<T> t = o.getVec();
             for(T &s:t)
-                s*=k;
+                s = k*s;
             return t;
         }
         MultiDimPoint<T> operator+(const MultiDimPoint<T> &vec2){
