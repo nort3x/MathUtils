@@ -281,10 +281,10 @@ namespace Calculus{
         }
 
         tempTK std::function<T (K)> ODE<T,K>::EulerMethodSecondOrder(const std::function<T(T, T, K)> &F_yp_y_t, K t0,T yp0, T y0, K stepsize) {
-            std::function<Algebric::MultiDimPoint<T>(Algebric::MultiDimPoint<T>,K)> Field_reduced = [=](Algebric::MultiDimPoint<T> yp_y ,K t){
+            std::function<Algebric::MultiDimPoint<T>(Algebric::MultiDimPoint<T>,K)> Field_reduced = [=](Algebric::MultiDimPoint<T> y_yp ,K t){
                 Algebric::MultiDimPoint<T> ans;
-                ans.setValue(yp_y.getValue(1),0);
-                ans.setValue(F_yp_y_t(yp_y.getValue(0),yp_y.getValue(0),t),1);
+                ans.setValue(y_yp.getValue(1),0);
+                ans.setValue(F_yp_y_t(y_yp.getValue(1),y_yp.getValue(0),t),1);
                 return ans;
             };
             return [=](K t){

@@ -35,7 +35,7 @@ namespace Algebric{
                 s = k*s;
             return t;
         }
-        MultiDimPoint<T> operator+(const MultiDimPoint<T> &vec2){
+        MultiDimPoint<T> operator+(const MultiDimPoint<T> &vec2)const{
             if(getDim() == vec2.getDim())
             {
                 std::vector<T> res;

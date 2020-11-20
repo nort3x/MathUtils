@@ -1,0 +1,4 @@
+/root/Dev/clion-2020.2.1/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /root/Dev/CLionProjects/MathUtils
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /root/Dev/CLionProjects/MathUtils/cmake-build-debug
