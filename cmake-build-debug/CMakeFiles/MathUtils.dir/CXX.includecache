@@ -11,6 +11,8 @@ cmath
 -
 DataType.h
 /root/Dev/CLionProjects/MathUtils/DataType.h
+MathUtils.h
+/root/Dev/CLionProjects/MathUtils/MathUtils.h
 
 /root/Dev/CLionProjects/MathUtils/DataType.h
 ostream
@@ -19,6 +21,8 @@ functional
 -
 vector
 -
+iomanip
+/root/Dev/CLionProjects/MathUtils/iomanip
 DataType.cpp
 /root/Dev/CLionProjects/MathUtils/DataType.cpp
 
@@ -63,10 +67,18 @@ Utils.h
 /root/Dev/CLionProjects/MathUtils/Utils.h
 
 /root/Dev/CLionProjects/MathUtils/main.cpp
-MathUtils.h
-/root/Dev/CLionProjects/MathUtils/MathUtils.h
-gnuplot.h
-/root/Dev/CLionProjects/MathUtils/gnuplot.h
+iostream
+-
 DataType.h
 /root/Dev/CLionProjects/MathUtils/DataType.h
+transform.h
+/root/Dev/CLionProjects/MathUtils/transform.h
+gnuplot.h
+/root/Dev/CLionProjects/MathUtils/gnuplot.h
+
+/root/Dev/CLionProjects/MathUtils/transform.h
+DataType.h
+/root/Dev/CLionProjects/MathUtils/DataType.h
+cmath
+/root/Dev/CLionProjects/MathUtils/cmath
 

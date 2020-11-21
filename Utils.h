@@ -77,7 +77,7 @@ namespace Utils{
             file<<"#DATA BEGINS\n";
             for(auto vec : args){
                 for (int i = 0; i < vec.getDim(); ++i) {
-                    file<<vec[i]<<"\t";
+                    file<<vec.getValue(i)<<"\t";
                 }
                 file<<"\n";
             }

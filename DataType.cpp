@@ -3,7 +3,8 @@
 
 #include <cmath>
 #include "DataType.h"
-#define tempT template<typename T>
+#include "MathUtils.h"
+
 
 tempT Algebric::MultiDimPoint<T>::MultiDimPoint(const int& d) {
     mdp.reserve(d);
@@ -38,15 +39,26 @@ Algebric::MultiDimPoint<T>::MultiDimPoint(const std::vector<T>& vec ) {
 }
 
 tempT T Algebric::MultiDimPoint<T>::Norm() const{
-    T t;
+    T t =0;
     for(auto i: mdp){
-        t += i*i;
+        t += std::pow(i,2);
     }
     return std::sqrt(t);
 }
 tempT std::vector<T> Algebric::MultiDimPoint<T>::getVec() const {
     return mdp;
 }
+tempT Algebric::Matrix<T> Algebric::MultiDimPoint<T>::operator^(const MultiDimPoint <T> &vec2)const{
+    // v^w = v * wt
+    Matrix<T> m(getDim(),vec2.getDim(),0);
+    for (int i = 0; i <getDim() ; ++i) {
+        for (int j = 0; j < vec2.getDim(); ++j) {
+            m(i,j) = getValue(i)*vec2.getValue(j);
+        }
+    }
+    return m;
+};
+
 ///////////// matrix///////////////
 
 
@@ -261,11 +273,14 @@ std::vector<T> Algebric::Matrix<T>::operator*(const std::vector<T>& rhs) {
 
     for (unsigned i=0; i<rows; i++) {
         for (unsigned j=0; j<cols; j++) {
-            result[i] = this->mat[i][j] * rhs[j];
+            result[i] += this->mat[i][j] * rhs[j];
         }
     }
 
     return result;
+}
+tempT Algebric::MultiDimPoint<T> Algebric::Matrix<T>::operator*(const Algebric::MultiDimPoint<T>& vec){
+    return operator*(vec.getVec());
 }
 
 // Obtain a vector of the diagonal elements

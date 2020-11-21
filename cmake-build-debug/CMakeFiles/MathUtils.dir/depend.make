@@ -3,6 +3,9 @@
 
 CMakeFiles/MathUtils.dir/DataType.cpp.o: ../DataType.cpp
 CMakeFiles/MathUtils.dir/DataType.cpp.o: ../DataType.h
+CMakeFiles/MathUtils.dir/DataType.cpp.o: ../MathUtils.cpp
+CMakeFiles/MathUtils.dir/DataType.cpp.o: ../MathUtils.h
+CMakeFiles/MathUtils.dir/DataType.cpp.o: ../Utils.h
 
 CMakeFiles/MathUtils.dir/MathUtils.cpp.o: ../DataType.cpp
 CMakeFiles/MathUtils.dir/MathUtils.cpp.o: ../DataType.h
@@ -17,4 +20,5 @@ CMakeFiles/MathUtils.dir/main.cpp.o: ../MathUtils.h
 CMakeFiles/MathUtils.dir/main.cpp.o: ../Utils.h
 CMakeFiles/MathUtils.dir/main.cpp.o: ../gnuplot.h
 CMakeFiles/MathUtils.dir/main.cpp.o: ../main.cpp
+CMakeFiles/MathUtils.dir/main.cpp.o: ../transform.h
 
