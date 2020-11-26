@@ -6,7 +6,13 @@
 #define IMAGE_MESSURE_TRANSFORM_H
 #include "DataType.h"
 #include "cmath"
+
+#ifndef tempT
+#define tempT template<typename T>
+#define tempTK template<typename T,typename K>
+#endif
 #define Vector(T) Algebric::MultiDimPoint<T>
+
 namespace trns{
     tempT T Dot(const Vector(T) &v1,const Vector(T) &v2){
         T ans = 0;
@@ -88,4 +94,7 @@ namespace trns{
     };
 
 }
+#undef Vector
+#undef tempT
+#undef tempTK
 #endif //IMAGE_MESSURE_TRANSFORM_H

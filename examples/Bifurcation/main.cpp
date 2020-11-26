@@ -1,8 +1,6 @@
-#include "MathUtils.h"
-#include "gnuplot.h"
-#include "DataType.h"
-#include "transform.h"
-#include "climits"
+#include "../../MathUtils.h"
+#include "../../gnuplot.h"
+
 
 inline double LogisticEquation(double xn, double r);
 inline double LogisticIterator(int n,double x0,double r,double (*LogisticEquation)(double xn,double n));

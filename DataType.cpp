@@ -3,8 +3,10 @@
 
 #include <cmath>
 #include "DataType.h"
-#include "MathUtils.h"
-
+#ifndef tempT
+#define tempT template<typename T>
+#define tempTK template<typename T,typename K>
+#endif
 
 tempT Algebric::MultiDimPoint<T>::MultiDimPoint(const int& d) {
     mdp.reserve(d);
@@ -319,5 +321,6 @@ unsigned Algebric::Matrix<T>::get_cols() const {
     return this->cols;
 }
 
-
+#undef tempT
+#undef tempTK
 #endif

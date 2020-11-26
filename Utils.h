@@ -10,6 +10,11 @@
 #include "chrono"
 #include "iomanip"
 
+#ifndef tempT
+#define tempT template<typename T>
+#define tempTK template<typename T,typename K>
+#endif
+
 namespace Utils{
     class Timer{
        mutable std::chrono::time_point<std::chrono::system_clock, std::chrono::duration<double>> time;
@@ -288,5 +293,14 @@ namespace Utils{
         CartiProduct(temp);
         return temp;
     }
+    tempT std::vector<T> ConcateVector(const std::vector<std::vector<T>> &ves){
+        std::vector<T> ans;
+        for(auto i: ves){
+            ans.insert(ans.end(),i.begin(),i.end());
+        }
+        return ans;
+    }
 }
+#undef tempT
+#undef tempTK
 #endif //MATHUTILS_UTILS_H

@@ -11,6 +11,8 @@
 #include <fstream>
 #include <cstdio>
 #include "Utils.h"
+#define tempT template<typename T>
+#define tempTK template<typename T,typename K>
 
 namespace plt{
     void gpc(const std::string& command) {
@@ -165,4 +167,6 @@ namespace plt{
 
 
 }
+#undef tempT
+#undef tempTK
 #endif //MATHUTILS_GNUPLOT_H

@@ -4,8 +4,12 @@
 #include "DataType.h"
 #include "cmath"
 #include "MathUtils.h"
-#include "cstdarg"
 #include "Utils.h"
+
+#ifndef tempT
+#define tempT template<typename T>
+#define tempTK template<typename T,typename K>
+#endif
 namespace Calculus{
     tempT void Misc<T>::StartBeforeEnd(T &start, T &end) {
         if (start > end) {  // just to make sure a is after b :)
@@ -485,6 +489,6 @@ namespace Calculus{
 
 }
 
-
-
+#undef tempT
+#undef tempTK
 #endif

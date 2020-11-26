@@ -11,8 +11,6 @@ cmath
 -
 DataType.h
 /root/Dev/CLionProjects/MathUtils/DataType.h
-MathUtils.h
-/root/Dev/CLionProjects/MathUtils/MathUtils.h
 
 /root/Dev/CLionProjects/MathUtils/DataType.h
 ostream
@@ -33,8 +31,6 @@ cmath
 /root/Dev/CLionProjects/MathUtils/cmath
 MathUtils.h
 /root/Dev/CLionProjects/MathUtils/MathUtils.h
-cstdarg
-/root/Dev/CLionProjects/MathUtils/cstdarg
 Utils.h
 /root/Dev/CLionProjects/MathUtils/Utils.h
 
@@ -67,14 +63,16 @@ Utils.h
 /root/Dev/CLionProjects/MathUtils/Utils.h
 
 /root/Dev/CLionProjects/MathUtils/main.cpp
-iostream
--
+MathUtils.h
+/root/Dev/CLionProjects/MathUtils/MathUtils.h
+gnuplot.h
+/root/Dev/CLionProjects/MathUtils/gnuplot.h
 DataType.h
 /root/Dev/CLionProjects/MathUtils/DataType.h
 transform.h
 /root/Dev/CLionProjects/MathUtils/transform.h
-gnuplot.h
-/root/Dev/CLionProjects/MathUtils/gnuplot.h
+climits
+/root/Dev/CLionProjects/MathUtils/climits
 
 /root/Dev/CLionProjects/MathUtils/transform.h
 DataType.h

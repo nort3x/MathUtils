@@ -9,6 +9,7 @@ int main() {
     typedef Algebric::MultiDimPoint<double> Vec3;
     std::function<Vec3(Vec3,Vec3,double)> NewtonLaw = [](const Vec3& velocity,const Vec3& position,double time){
         //define F(v,r,t)/m
+        // y'' = F/m
         // for demo i will use gravity of a very large body
         double m0 = 1;
         double G_M_of_large_body = 10; // and also keep in minde large body is fixed at origin

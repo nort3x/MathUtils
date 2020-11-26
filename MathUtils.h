@@ -1,8 +1,10 @@
 #ifndef MATHUTILS_MATHUTILS_H
 #define MATHUTILS_MATHUTILS_H
 #include "DataType.h"
+#ifndef tempT
 #define tempT template<typename T>
 #define tempTK template<typename T,typename K>
+#endif
 
 namespace Calculus{
     tempTK using Function1D = std::function<T(K)>;
@@ -143,5 +145,7 @@ namespace Calculus{
     }
 
 }
+#undef tempT
+#undef tempTK
 #include "MathUtils.cpp"
 #endif //MATHUTILS_MATHUTILS_H

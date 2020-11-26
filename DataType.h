@@ -6,9 +6,9 @@
 #include "iomanip"
 
 namespace Algebric{
-
     template <typename T> class Matrix;
     template <typename T> class MultiDimPoint {
+    private:
         std::vector<T> mdp;
         int dim;
     public:
@@ -62,7 +62,6 @@ namespace Algebric{
             return o;
         };
     };
-
     template <typename T> class Matrix  {
     private:
         std::vector<std::vector<T> > mat;

@@ -1,8 +1,9 @@
-#include "MathUtils.h"
-#include "gnuplot.h"
-#include "DataType.h"
-#include "transform.h"
-#include "climits"
+
+
+```cpp
+#include "../../MathUtils.h"
+#include "../../gnuplot.h"
+
 
 inline double LogisticEquation(double xn, double r);
 inline double LogisticIterator(int n,double x0,double r,double (*LogisticEquation)(double xn,double n));
@@ -33,3 +34,7 @@ inline double LogisticIterator(int n,double x0,double r,double (*LogisticEquatio
     }
     return xn_p1;
 }
+```
+
+
+![alt text](https://raw.githubusercontent.com/nort3x/MathUtils/master/examples/Bifurcation/Screenshot_2020-11-26_14-27-17.png)
