@@ -1,3 +1,0 @@
-/root/Dev/CLionProjects/MathUtils/cmake-build-debug-coverage/CMakeFiles/edit_cache.dir
-/root/Dev/CLionProjects/MathUtils/cmake-build-debug-coverage/CMakeFiles/rebuild_cache.dir
-/root/Dev/CLionProjects/MathUtils/cmake-build-debug-coverage/CMakeFiles/MathUtils.dir
